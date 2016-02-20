@@ -76,7 +76,13 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Path=name}"/>
+                                    <TextBlock Text="{Binding Path=name}">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem x:Name="LanePropertiesMenuItem" Header="Properties" Click="LanePropertiesMenuItem_Click"/>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                    </TextBlock>
                                     <Ellipse Grid.Column="1"
                                              Stretch="Uniform"
                                              HorizontalAlignment="Right"
@@ -158,7 +164,13 @@
                                     Margin="0,0,0,0">
                             <TextBlock Text="Lane Status: "
                                        HorizontalAlignment="Left"
-                                       VerticalAlignment="Top"/>
+                                       VerticalAlignment="Top">
+                                <TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Command="Properties"/>
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+                            </TextBlock>
                             <Ellipse Stretch="Uniform"
                                      Height="15"
                                      Width="15"

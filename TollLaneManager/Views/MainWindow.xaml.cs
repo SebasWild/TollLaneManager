@@ -73,6 +73,12 @@ namespace TollLaneManager.Views
         {
 
         }
+
+        private void LanePropertiesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            PropertiesWindow propW = new PropertiesWindow();
+            propW.Show();
+        }
          
     }
 }
