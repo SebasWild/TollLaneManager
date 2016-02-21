@@ -47,6 +47,16 @@ namespace TollLaneManager.Views
             }
             set { SetValue(TollLanesProperty, value); }
         }
+        //Reports to display in the "Reports" expander.
+        public static DependencyProperty ReportsProperty = DependencyProperty.Register("Reports", typeof(ObservableCollection<Report>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Report>()));
+        public ObservableCollection<Report> Reports
+        {
+            get
+            {
+                return (ObservableCollection<Report>)GetValue(ReportsProperty);
+            }
+            set { SetValue(ReportsProperty, value); }
+        }
         #endregion
 
 
@@ -78,6 +88,11 @@ namespace TollLaneManager.Views
         {
             PropertiesWindow propW = new PropertiesWindow();
             propW.Show();
+        }
+
+        private void ReportPropertiesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
          
     }

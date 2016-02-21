@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:TollLaneManager.Converters"
+        
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Toll Lane Manager" Height="600" Width="800">
     <Window.Resources>
@@ -96,22 +97,31 @@
 
                 </Expander>
                 <Expander x:Name="LaneReportsExpander" Header="Reports"    
-                    HorizontalAlignment="Left">
-                    <Grid Height="Auto"
-                      Margin="10,4,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="I don't know what to put here..."
-                                   TextWrapping="Wrap"/>
-                    </Grid>
+                    HorizontalAlignment="Left"
+                          HorizontalContentAlignment="Stretch">
+                    <ListBox Name="ReportsListBox"
+                             ItemsSource="{Binding Reports}"
+                             HorizontalAlignment="Stretch"
+                             SelectedItem="{Binding SelectedTollLane, Mode=TwoWay}"
+                             SelectionChanged="LanesListBox_SelectionChanged"
+                             HorizontalContentAlignment="Stretch" Style="{DynamicResource TollLanesListBoxStyle}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Path=name}">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem x:Name="ReportPropertiesMenuItem" Header="Properties" Click="ReportPropertiesMenuItem_Click"/>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
                 </Expander>
 
@@ -119,89 +129,14 @@
         </Border>
         <!--Stuff for right pane-->
         <!--TODO: There is no design time data at all!!!!-->
-        <TabControl Grid.Column="1" 
-                    Grid.Row="2"
-                    HorizontalAlignment="Stretch"  
-                    VerticalAlignment="Stretch" >
-            <TabItem Header="Overview">
-                <!--Overview content for a single lane goes here-->
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0"
-                                    Grid.Row="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Orientation="Horizontal"
-                                    Margin="0,0,0,0">
-                            <TextBlock Text="Lane Name: " VerticalAlignment="Top"/>
-                            <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=SelectedTollLane.name}" VerticalAlignment="Top"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1"
-                                    Grid.Row="0"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Orientation="Horizontal"
-                                    Margin="0,0,0,0">
-                            <TextBlock Text="Lane Status: "
-                                       HorizontalAlignment="Left"
-                                       VerticalAlignment="Top">
-                                <TextBlock.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Command="Properties"/>
-                                    </ContextMenu>
-                                </TextBlock.ContextMenu>
-                            </TextBlock>
-                            <Ellipse Stretch="Uniform"
-                                     Height="15"
-                                     Width="15"
-                                     Fill="{Binding Path=SelectedTollLane.status, Converter={StaticResource StatusToColorConverter}}"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Top"/>
-                        </StackPanel>
-                    </Grid>
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
-                        <!--StackPanel for upper right box-->
-                    </StackPanel>
-                    <ListBox x:Name="LaneLogListBox"
-                             Grid.Column="0"
-                             Grid.ColumnSpan="2"
-                             Grid.Row="2"
-                             ItemsSource="{Binding Path=SelectedTollLane.logEntries}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Recent Log Entries: " VerticalAlignment="Bottom"/>
-
-                </Grid>
-            </TabItem>
-            <TabItem Header="Log">
-                <Grid Background="#FFE5E5E5">
-                </Grid>
-            </TabItem>
-        </TabControl>
+        
+        <Border Background="#FFF0F0F0"
+                Grid.Row="2"
+                Grid.Column="1">
+            <TextBlock Text="Choose an item from the left to get started."
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Border>
         <!--Statusbar-->
         <StatusBar HorizontalAlignment="Stretch" Height="25" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Stretch" Width="Auto">
             <StatusBarItem Content="System Status: " HorizontalAlignment="Right" Height="Auto" VerticalAlignment="Stretch"/>
