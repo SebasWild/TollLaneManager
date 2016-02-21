@@ -2,12 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:entities="clr-namespace:TollLaneManager.Entities"
+        xmlns:common ="clr-namespace:TollLaneManager.Common"
         xmlns:converters="clr-namespace:TollLaneManager.Converters"
         
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Toll Lane Manager" Height="600" Width="800">
     <Window.Resources>
         <converters:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <common:TabControlDataTemplateSelector x:Key="TabControlDataTemplateSelector"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -68,7 +71,6 @@
                              ItemsSource="{Binding TollLanes}"
                              HorizontalAlignment="Stretch"
                              SelectedItem="{Binding SelectedTollLane, Mode=TwoWay}"
-                             SelectionChanged="LanesListBox_SelectionChanged"
                              HorizontalContentAlignment="Stretch" Style="{DynamicResource TollLanesListBoxStyle}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -80,7 +82,26 @@
                                     <TextBlock Text="{Binding Path=name}">
                                         <TextBlock.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem x:Name="LanePropertiesMenuItem" Header="Properties" Click="LanePropertiesMenuItem_Click"/>
+                                                <MenuItem Header="Open Lane In New Tab"  Click="MakeTab">
+                                                    <MenuItem.Icon>
+                                                        <Image Source="/Assets/Icons/plusIcon.ico"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Header="Remove Lane" Click="DeleteLaneContextClick">
+                                                    <MenuItem.Icon>
+                                                        <Image Source="/Assets/Icons/removeIcon.ico"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Header="New Report" Click="MakeReportTab">
+                                                    <MenuItem.Icon>
+                                                        <Image Source="/Assets/Icons/newReportIcon.ico"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Header="Properties" Click="LanePropertiesMenuItem_Click">
+                                                    <MenuItem.Icon>
+                                                        <Image Source="/Assets/Icons/gearIcon.ico"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
                                             </ContextMenu>
                                         </TextBlock.ContextMenu>
                                     </TextBlock>
@@ -100,10 +121,8 @@
                     HorizontalAlignment="Left"
                           HorizontalContentAlignment="Stretch">
                     <ListBox Name="ReportsListBox"
-                             ItemsSource="{Binding Reports}"
+                             ItemsSource="{Binding Reports, Mode=OneWay}"
                              HorizontalAlignment="Stretch"
-                             SelectedItem="{Binding SelectedTollLane, Mode=TwoWay}"
-                             SelectionChanged="LanesListBox_SelectionChanged"
                              HorizontalContentAlignment="Stretch" Style="{DynamicResource TollLanesListBoxStyle}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -114,7 +133,11 @@
                                     <TextBlock Text="{Binding Path=name}">
                                         <TextBlock.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem x:Name="ReportPropertiesMenuItem" Header="Properties" Click="ReportPropertiesMenuItem_Click"/>
+                                                <MenuItem x:Name="ReportPropertiesMenuItem" Header="Properties" Click="ReportPropertiesMenuItem_Click" >
+                                                    <MenuItem.Icon>
+                                                        <Image Source="/Assets/Icons/gearIcon.ico"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
                                             </ContextMenu>
                                         </TextBlock.ContextMenu>
                                     </TextBlock>
@@ -129,7 +152,6 @@
         </Border>
         <!--Stuff for right pane-->
         <!--TODO: There is no design time data at all!!!!-->
-        
         <Border Background="#FFF0F0F0"
                 Grid.Row="2"
                 Grid.Column="1">
@@ -137,6 +159,24 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
         </Border>
+        <!--TODO close buttons on each tab!-->
+        <TabControl x:Name="MainWindowTabControl"
+                    Grid.Column="1" 
+                    Grid.Row="2"
+                    HorizontalAlignment="Stretch"  
+                    VerticalAlignment="Stretch" 
+                    ItemsSource="{Binding STollLanes}"
+                    ContentTemplateSelector="{StaticResource TabControlDataTemplateSelector}">
+<!--ContentTemplateSelector enables to display both reports and lanes in the same tab control.-->
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>                            
+                <TextBlock Text="{Binding name}"/>
+            </TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            
+        </TabControl>
         <!--Statusbar-->
         <StatusBar HorizontalAlignment="Stretch" Height="25" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Stretch" Width="Auto">
             <StatusBarItem Content="System Status: " HorizontalAlignment="Right" Height="Auto" VerticalAlignment="Stretch"/>

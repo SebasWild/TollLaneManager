@@ -57,6 +57,20 @@ namespace TollLaneManager.Views
             }
             set { SetValue(ReportsProperty, value); }
         }
+        public static DependencyProperty STollLanesProperty = DependencyProperty.Register("STollLanes", typeof(ObservableCollection<Tabitem>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Tabitem>()));
+        public ObservableCollection<Tabitem> STollLanes
+        {
+            get
+            {
+
+                return (ObservableCollection<Tabitem>)GetValue(STollLanesProperty);
+            }
+            set
+            {
+                SetValue(STollLanesProperty, value);
+
+            }
+        }
         #endregion
 
 
@@ -71,7 +85,17 @@ namespace TollLaneManager.Views
         private void DeleteLaneClick(object sender, RoutedEventArgs e)
         {
             if (TollLanes.Count != 0)
-                TollLanes.RemoveAt(TollLanes.Count - 1);
+                STollLanes.Remove(TollLanes.ElementAt(TollLanes.Count - 1));
+            TollLanes.RemoveAt(TollLanes.Count - 1);
+
+        }
+
+        private void DeleteLaneContextClick(object sender, RoutedEventArgs e)
+        {
+            Lane laneToRemove = (Lane)((MenuItem)sender).DataContext;
+            STollLanes.Remove(laneToRemove);
+            TollLanes.Remove(laneToRemove);
+
         }
 
         /// <summary>
@@ -79,20 +103,54 @@ namespace TollLaneManager.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LanesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
 
+            Lane laneToAdd = ((Lane)((ListBox)sender).SelectedItem);
+            if (STollLanes.Contains(laneToAdd))
+            {
+                // remove it
+                STollLanes.Remove(laneToAdd);
+            }
+
+            // add new, or re add previously deleted lane
+            STollLanes.Add(laneToAdd);
+        }
+
+        private void MakeTab(object sender, RoutedEventArgs e)
+        {
+            Lane laneToAdd = (Lane)((MenuItem)sender).DataContext;
+            if (STollLanes.Contains(laneToAdd))
+            {
+                // remove it
+                STollLanes.Remove(laneToAdd);
+            }
+
+            // add new, or re add previously deleted lane
+            STollLanes.Add(laneToAdd);
         }
 
         private void LanePropertiesMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            PropertiesWindow propW = new PropertiesWindow();
-            propW.Show();
+            PropertiesWindow pWindow = new PropertiesWindow();
+            pWindow.Show();
         }
 
         private void ReportPropertiesMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MakeReportTab(object sender, RoutedEventArgs e)
+        {
+            Report newReport = new Report("Custom Report", DateTime.Now, DateTime.Now.AddDays(-1), SelectedTollLane.logEntries.ToList());
+            Reports.Add(newReport);
+
+            if(STollLanes.Contains(newReport))
+            {
+                STollLanes.Remove(newReport);
+            }
+            STollLanes.Add(newReport);
         }
          
     }

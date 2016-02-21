@@ -21,7 +21,7 @@ namespace TollLaneManager.Entities
     /// <summary>
     /// This object represents a traffic lane
     /// </summary>
-    public class Lane
+    public class Lane : Tabitem
     {
         public string name { get; set; }
         public int id { get; set; }
