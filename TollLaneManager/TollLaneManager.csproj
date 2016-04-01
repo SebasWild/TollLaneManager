@@ -57,6 +57,15 @@
     <Compile Include="Common\TabControlDataTemplateSelector.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tabitem.cs" />
+    <Compile Include="Production Code\BillingModule.cs" />
+    <Compile Include="Production Code\Camera.cs" />
+    <Compile Include="Production Code\Lane.cs" />
+    <Compile Include="Production Code\LicensePlateReader.cs" />
+    <Compile Include="Production Code\MaintenanceModule.cs" />
+    <Compile Include="Production Code\Monitor.cs" />
+    <Compile Include="Production Code\Plaza.cs" />
+    <Compile Include="Production Code\RFIDReader.cs" />
+    <Compile Include="Production Code\Simulator.cs" />
     <Compile Include="Views\PropertiesWindow.xaml.cs">
       <DependentUpon>PropertiesWindow.xaml</DependentUpon>
     </Compile>
@@ -118,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Images\" />
+    <Folder Include="Camera Module\" />
     <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
