@@ -13,15 +13,21 @@ namespace AutomatedRoadTollingSystem
 		}
 		public void disableCamera(Camera cameraToDisable)
 		{
-			//Stub
+			foreach (Camera c in this.plaza.getCameras())
+            {
+                if (c == cameraToDisable) c.disable();
+            }
 		}
 		//Enables the camera sent to this method
 		public void enableCamera(Camera cameraToEnable)
-		{
-			//Stub
-		}
-		//Closes a specified lane.
-		public void closeLane(Lane laneToClose)
+        {
+            foreach (Camera c in this.plaza.getCameras())
+            {
+                if (c == cameraToEnable) c.enable();
+            }
+        }
+        //Closes a specified lane.
+        public void closeLane(Lane laneToClose)
 		{
 			laneToClose.close();
 		}
