@@ -25,6 +25,8 @@ namespace TollLaneManager.Views
         public MainWindow()
         {
             InitializeComponent();
+            AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
+            rdr.TestALPR();
         }
         //The View binds to the following properties. 
         #region DependencyProperties

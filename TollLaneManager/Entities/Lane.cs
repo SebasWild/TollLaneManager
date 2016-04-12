@@ -20,7 +20,10 @@ namespace TollLaneManager.Entities
 {
     /// <summary>
     /// This object represents a traffic lane
+    /// 
+    /// PROTOTYPE CODE
     /// </summary>
+    [System.Obsolete("New class in Production Code dir. <- Consider moving this here to 'Entities'")]
     public class Lane : Tabitem
     {
         public string name { get; set; }
