@@ -8,6 +8,8 @@ namespace TollLaneManager
 {
     public class Transaction
     {
-        //stub
+        private int transactionNum;
+        private decimal amountCharged;
+        private DateTime timestamp;
     }
 }

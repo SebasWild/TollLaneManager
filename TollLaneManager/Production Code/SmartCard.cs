@@ -8,6 +8,7 @@ namespace TollLaneManager
 {
     public class SmartCard
     {
-        //stub
+        int serialNum;
+        Account account;
     }
 }

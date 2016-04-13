@@ -8,6 +8,12 @@ namespace TollLaneManager
 {
     public class Vehicle
     {
-        //stub
+        private Boolean hasSmartCard;
+        private String licensePlateNum;
+        private String vehicleMake;
+        private String model;
+        int vehicleYear;
+        private String vehicleType;
+        
     }
 }

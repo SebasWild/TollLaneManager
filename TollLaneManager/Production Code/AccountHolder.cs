@@ -8,6 +8,10 @@ namespace TollLaneManager
 {
     public class AccountHolder
     {
+        private String firstName;
+        private String lastName;
+        private Address address;
+        private Vehicle vehicle;
         //Stub
     }
 }
