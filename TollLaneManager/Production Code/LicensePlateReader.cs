@@ -1,7 +1,7 @@
 using AutomatedRoadTollingSystem;
 using System;
 using System.IO;
-using System.Windows.Media.Imaging;
+using System.Windows.Graphics.Imaging;
 using openalprnet;
 namespace AutomatedRoadTollingSystem
 {
@@ -10,7 +10,7 @@ namespace AutomatedRoadTollingSystem
 	{
 		//Searches for a license plate in the Image an parses the plate info to a string.
 		//Returns a string representation of the license plate found.
-		public String readLicense(BitmapImage plate)
+		public String readLicense(SoftwareBitmap plate)
 			{
             return "";
 				//Stub

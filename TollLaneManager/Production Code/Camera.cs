@@ -1,5 +1,8 @@
 using AutomatedRoadTollingSystem;
 using System;
+using Windows.Media.Capture;
+using Windows.Storage;
+
 namespace AutomatedRoadTollingSystem
 {
 	//Provides the ability to capture pictures of license plates for later use with the parsing libraries.
@@ -10,7 +13,19 @@ namespace AutomatedRoadTollingSystem
 		//Returns the string representation of the licence plate.
 		public String takePicture()
 		{
-            //Stub
+            //https://msdn.microsoft.com/en-us/windows/uwp/audio-video-camera/capture-photos-and-video-with-cameracaptureui
+            CameraCaptureUI captureUI = new CameraCaptureUI();
+            captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
+            captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
+     
+            StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);
+
+            IRandomAccessStream stream = await photo.OpenAsync(FileAccessMode.Read);
+            BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+            SoftwareBitmap plateImage = await decoder.GetSoftwareBitmapAsync();
+
+            LicensePlateReader reader = new LicensePlateReader();
+            reader.readLicense(plateImage);
             return "";
 		}
 		//Disables the camera, closes the lane the camera is monitoring. 
