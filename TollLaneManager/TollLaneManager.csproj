@@ -185,6 +185,7 @@
     <Folder Include="Assets\Images\" />
     <Folder Include="Camera Module\" />
     <Folder Include="Controls\" />
+    <Folder Include="SimulatedPictures\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\gearIcon.ico" />
