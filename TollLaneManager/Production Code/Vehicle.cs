@@ -14,6 +14,11 @@ namespace TollLaneManager
         private String model;
         int vehicleYear;
         private String vehicleType;
+
+        public String getPlate()
+        {
+            return this.licensePlateNum;
+        }
         
     }
 }

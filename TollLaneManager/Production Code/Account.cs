@@ -23,12 +23,18 @@ namespace TollLaneManager
         public decimal addFunds(decimal fundsToAdd)
         {
             this.funds += fundsToAdd;
+            this.transactions.Add(new Transaction(fundsToAdd));
             return this.funds;
         }
         public decimal subtractFunds(decimal fundsToSub)
         {
             this.funds - fundsToSub;
+            this.transactions.Add(new Transaction(-fundsToAdd));
             return this.funds;
+        }
+        public String getPlate()
+        {
+            return this.vehicle.getPlate();
         }
     }
 }

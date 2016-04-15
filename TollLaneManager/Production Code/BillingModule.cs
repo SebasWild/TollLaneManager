@@ -7,13 +7,15 @@ namespace AutomatedRoadTollingSystem
 	public class BillingModule
 	{
         public List<SmartCard> smartcards;
+        public List<Account> accounts;
+
 		//Takes the driver’s smart card number and charges the value of the toll.
 		//Parameter: smart card number
-		//Returns: Balance of the accountholder. 
+		//Returns: a string representation of the balance of the cardholder. 
 		public String chargeSmartCard(String smartCardNumber, decimal amountToCharge)
 		{
             SmartCard cardToCharge = getCardByNum(smartCardNumber);
-			return cardToCharge.getAccount().subtractFunds(amountToCharge);
+            return (String)chargeAccount(cardToCharge.getAccount(), amountToCharge);
         }
         public SmartCard getCardByNum(String num)
         {
@@ -25,13 +27,27 @@ namespace AutomatedRoadTollingSystem
                 }
             }
         }
-		//Sends the plate off to a billing site to charge the plate holder the toll.
-		//Parameter: license plate number
-		//returns: ???
-		public String chargePlateHolder(String plateNumber)
+        public decimal chargeAccount(Account account, decimal amountToCharge)
+        {
+             return account.subtractFunds(amountToCharge);
+        }
+        //Sends the plate off to a billing site to charge the plate holder the toll.
+        //Parameter: license plate number
+        //returns: a string representation of the balance of the plateholder. 
+        public String chargePlateHolder(String plateNumber, decimal amountToCharge)
 		{
-			return "";
-			//Stub
+            chargeAccount(getAccountByPlate(plateNumber), amountToCharge);
+            return (String)plateNumber;
 		}
+        public Account getAccountByPlate(String plateNum)
+        {
+            foreach (Account account in this.accounts)
+            {
+                if (account.getPlate() == plateNum)
+                {
+                    return account;
+                }
+            }
+        }
 	}
 }
