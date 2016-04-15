@@ -2,8 +2,10 @@ using AutomatedRoadTollingSystem;
 using System;
 namespace AutomatedRoadTollingSystem
 {
-	
-	//This class was not mentioned in the design document for whatever reason.
+
+    /// <summary>
+    /// A lane object stores information about a lane: the camera module, RFID readers, and some fields like isOpen and name.
+    /// </summary>
 	public class Lane
 	{
         private Camera primaryCamera;

@@ -23,7 +23,7 @@ namespace TollLaneManager.Common
             //CREATE TABLE for account
             command.CommandText = "CREATE TABLE IF NOT EXISTS account(id int PRIMARY KEY, owner_ID int, FOREIGN KEY(owner_ID) REFERENCES accountholder(ID));";
             command.ExecuteNonQuery();
-
+            //Possible TODO: table to store lanes....
         }
     }
 }

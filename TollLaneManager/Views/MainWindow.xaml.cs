@@ -25,9 +25,18 @@ namespace TollLaneManager.Views
         public MainWindow()
         {
             InitializeComponent();
+            InitializeLanes();
             AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
-            rdr.TestALPR();
+            //rdr.TestALPR();
         }
+        /// <summary>
+        /// Called on starting the applications. Will initialize some lanes.
+        /// </summary>
+        private void InitializeLanes()
+        {
+            
+        }
+
         //The View binds to the following properties. 
         #region DependencyProperties
         public static DependencyProperty SelectedLaneProperty = DependencyProperty.Register("SelectedTollLane", typeof(Lane), typeof(MainWindow), null);
