@@ -6,14 +6,25 @@ namespace AutomatedRoadTollingSystem
 	//or indirectly through the driver's license plate number (SRS Functional Requirements 4.3).
 	public class BillingModule
 	{
+        public List<SmartCard> smartcards;
 		//Takes the driver’s smart card number and charges the value of the toll.
 		//Parameter: smart card number
-		//Returns: ???
-		public String chargeSmartCard(String smartCardNumber)
+		//Returns: Balance of the accountholder. 
+		public String chargeSmartCard(String smartCardNumber, decimal amountToCharge)
 		{
-			return "";
-			//Stub
-		}
+            SmartCard cardToCharge = getCardByNum(smartCardNumber);
+			return cardToCharge.getAccount().subtractFunds(amountToCharge);
+        }
+        public SmartCard getCardByNum(String num)
+        {
+            foreach (SmartCard card in this.smartcards)
+            {
+                if (card.getSerialNumber() == smartCardNumber)
+                {
+                    return card;
+                }
+            }
+        }
 		//Sends the plate off to a billing site to charge the plate holder the toll.
 		//Parameter: license plate number
 		//returns: ???

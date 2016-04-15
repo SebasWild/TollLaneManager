@@ -22,12 +22,12 @@ namespace TollLaneManager
         }
         public decimal addFunds(decimal fundsToAdd)
         {
-            //stub
+            this.funds += fundsToAdd;
             return this.funds;
         }
         public decimal subtractFunds(decimal fundsToSub)
         {
-            //stub
+            this.funds - fundsToSub;
             return this.funds;
         }
     }
