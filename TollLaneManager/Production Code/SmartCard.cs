@@ -8,7 +8,20 @@ namespace TollLaneManager
 {
     public class SmartCard
     {
-        int serialNum;
+        String serialNum;
         Account account;
+        public SmartCard(String num, Account account)
+        {
+            this.serialNum = num;
+            this.account = account;
+        }
+        public Account getAccount()
+        {
+            return this.account;
+        }
+        public String getSerialNum()
+        {
+            return this.serialNum;
+        }
     }
 }

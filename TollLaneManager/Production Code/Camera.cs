@@ -2,6 +2,7 @@ using AutomatedRoadTollingSystem;
 using System;
 using Windows.Media.Capture;
 using Windows.Storage;
+using System.Drawing;
 
 namespace AutomatedRoadTollingSystem
 {
@@ -14,6 +15,8 @@ namespace AutomatedRoadTollingSystem
 		public String takePicture()
 		{
             //https://msdn.microsoft.com/en-us/windows/uwp/audio-video-camera/capture-photos-and-video-with-cameracaptureui
+            //I'm guessing none of this code works, but we don't have, nor need to have hardware that works.
+            //All actual work should be done through the takePictureSimulated method, which doesn't need any hardware.
             CameraCaptureUI captureUI = new CameraCaptureUI();
             captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
             captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
@@ -28,6 +31,15 @@ namespace AutomatedRoadTollingSystem
             reader.readLicense(plateImage);
             return "";
 		}
+        //simulates taking a picture by pulling a random image out of the SimulatedPictures folder.
+        public String takePictureSimulated()
+        {
+            var rand = new Random();
+            var files = Directory.GetFiles(".\\SimulatedPictures", "*.jpg");
+            LicensePlateReader reader = new LicensePlateReader();
+            return Image.FromFile(files[rand.Next(files.Length)]);
+
+        }
 		//Disables the camera, closes the lane the camera is monitoring. 
 		public void disable()
 		{

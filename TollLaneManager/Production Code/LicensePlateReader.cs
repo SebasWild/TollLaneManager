@@ -2,19 +2,28 @@ using AutomatedRoadTollingSystem;
 using System;
 using System.IO;
 using System.Windows.Graphics.Imaging;
+using System.Drawing;
 using openalprnet;
 namespace AutomatedRoadTollingSystem
 {
 	//This module will allow us to read the license plate numbers from the pictures and parse the information to a string.
 	public class LicensePlateReader
 	{
-		//Searches for a license plate in the Image an parses the plate info to a string.
+		//Searches for a license plate in the image an parses the plate info to a string.
 		//Returns a string representation of the license plate found.
 		public String readLicense(SoftwareBitmap plate)
-			{
+		{
             return "";
-				//Stub
-			}
+			//Stub
+		}
+        //same as above, takes image rather than softwarebitmap. 
+        //This is the method that we actually need to have work for the demo.
+        //The other just needs to look like it works
+        public String readLicense(Image plate)
+        {
+            return "";
+            //Stub
+        }
         /*
          * Should work, havent tested it yet.
          * This is how it will go...
