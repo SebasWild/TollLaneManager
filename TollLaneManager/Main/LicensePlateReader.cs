@@ -1,33 +1,42 @@
 using AutomatedRoadTollingSystem;
 using System;
 using System.IO;
-using System.Windows.Graphics.Imaging;
 using System.Drawing;
 using openalprnet;
 namespace AutomatedRoadTollingSystem
 {
-	//This module will allow us to read the license plate numbers from the pictures and parse the information to a string.
-	public class LicensePlateReader
+	/// <summary>
+    ///     This module will allow us to read the license plate numbers from the pictures and parse the information to a string.
+    /// </summary>
+    public class LicensePlateReader
 	{
-		//Searches for a license plate in the image an parses the plate info to a string.
-		//Returns a string representation of the license plate found.
-		public String readLicense(SoftwareBitmap plate)
+		
+		/// <summary>
+        ///     OpenALPR already reads and parses the liscens plate into a string
+        ///     This method should call OpenALPR functionality to read in plates
+        /// </summary>
+        /// <param name="plateString"></param>
+        /// <returns></returns>
+        public String readLicense(String imagePath)
 		{
             return "";
 			//Stub
 		}
-        //same as above, takes image rather than softwarebitmap. 
-        //This is the method that we actually need to have work for the demo.
-        //The other just needs to look like it works
+        
+        /// <summary>
+        ///     Same as above just readins in the image file instead
+        /// </summary>
+        /// <param name="plate"></param>
+        /// <returns></returns>
         public String readLicense(Image plate)
         {
             return "";
             //Stub
         }
-        /*
-         * Should work, havent tested it yet.
-         * This is how it will go...
-         * */
+    
+        /// <summary>
+        ///     This has no functionality as of yet, still needs to be tested
+        /// </summary>
         public void TestALPR()
         {
             var alpr = new AlprNet("us", "/path/to/openalpr.conf", "/path/to/runtime_data");

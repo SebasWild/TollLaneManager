@@ -16,7 +16,7 @@ namespace TollLaneManager
         public Transaction(decimal amountCharged)
         {
             this.transactionNum = transactionCount++;
-            this.timestamp = DateTime.Now();
+            this.timestamp = DateTime.Now;
             this.amountCharged = amountCharged;
         }
     }

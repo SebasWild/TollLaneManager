@@ -107,20 +107,21 @@
     <Compile Include="Common\TabControlDataTemplateSelector.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tabitem.cs" />
-    <Compile Include="Production Code\BillingModule.cs" />
-    <Compile Include="Production Code\Camera.cs" />
-    <Compile Include="Production Code\Account.cs" />
-    <Compile Include="Production Code\AccountHolder.cs" />
-    <Compile Include="Production Code\Lane.cs" />
-    <Compile Include="Production Code\LicensePlateReader.cs" />
-    <Compile Include="Production Code\MaintenanceModule.cs" />
-    <Compile Include="Production Code\Monitor.cs" />
-    <Compile Include="Production Code\Plaza.cs" />
-    <Compile Include="Production Code\RFIDReader.cs" />
-    <Compile Include="Production Code\Simulator.cs" />
-    <Compile Include="Production Code\SmartCard.cs" />
-    <Compile Include="Production Code\Transaction.cs" />
-    <Compile Include="Production Code\Vehicle.cs" />
+    <Compile Include="Main\Address.cs" />
+    <Compile Include="Main\BillingModule.cs" />
+    <Compile Include="Main\Camera.cs" />
+    <Compile Include="Main\Account.cs" />
+    <Compile Include="Main\AccountHolder.cs" />
+    <Compile Include="Main\Lane.cs" />
+    <Compile Include="Main\LicensePlateReader.cs" />
+    <Compile Include="Main\MaintenanceModule.cs" />
+    <Compile Include="Main\Monitor.cs" />
+    <Compile Include="Main\Plaza.cs" />
+    <Compile Include="Main\RFIDReader.cs" />
+    <Compile Include="Main\Simulator.cs" />
+    <Compile Include="Main\SmartCard.cs" />
+    <Compile Include="Main\Transaction.cs" />
+    <Compile Include="Main\Vehicle.cs" />
     <Compile Include="Views\PropertiesWindow.xaml.cs">
       <DependentUpon>PropertiesWindow.xaml</DependentUpon>
     </Compile>
