@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace TollLaneManager.Converters
+namespace AutomatedRoadTollingSystem.Converters
 {
     class StatusToColorConverter : IValueConverter
     {

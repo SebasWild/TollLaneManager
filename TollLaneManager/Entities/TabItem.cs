@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TollLaneManager.Entities
+namespace AutomatedRoadTollingSystem.Entities
 {
     /// <summary>
     /// A TabItem can either be a lane or a report.

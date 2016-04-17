@@ -13,9 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TollLaneManager.Entities;
+using AutomatedRoadTollingSystem.Entities;
+using AutomatedRoadTollingSystem.Common;
 
-namespace TollLaneManager.Views
+namespace AutomatedRoadTollingSystem.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,8 +27,13 @@ namespace TollLaneManager.Views
         {
             InitializeComponent();
             InitializeLanes();
+            //TODO: call all this junk somewhere else...
             AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
             //rdr.TestALPR();
+            DBgenerator.initDB();       //Initialize the database, fill in some data.
+
+            //Quick test of basic billing functionality:
+            Simulator.testBillingModule();
         }
         /// <summary>
         /// Called on starting the applications. Will initialize some lanes.
@@ -87,26 +93,30 @@ namespace TollLaneManager.Views
 
         public void NewLaneClick(object sender, RoutedEventArgs e)
         {
+            /*
             Random rand = new Random();
             int random = rand.Next(0, 1000);
             TollLanes.Add(new Lane("Lane #" + random, random));
             TollLanes.Last().status = rand.Next(0, 3);
+            */
         }
 
         private void DeleteLaneClick(object sender, RoutedEventArgs e)
-        {
+        { /*
             if (TollLanes.Count != 0)
                 STollLanes.Remove(TollLanes.ElementAt(TollLanes.Count - 1));
             TollLanes.RemoveAt(TollLanes.Count - 1);
+            */
 
         }
 
         private void DeleteLaneContextClick(object sender, RoutedEventArgs e)
         {
+            /*
             Lane laneToRemove = (Lane)((MenuItem)sender).DataContext;
             STollLanes.Remove(laneToRemove);
             TollLanes.Remove(laneToRemove);
-
+            */
         }
 
         /// <summary>
@@ -116,7 +126,7 @@ namespace TollLaneManager.Views
         /// <param name="e"></param>
         private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
-
+            /*
             Lane laneToAdd = ((Lane)((ListBox)sender).SelectedItem);
             if (STollLanes.Contains(laneToAdd))
             {
@@ -126,10 +136,12 @@ namespace TollLaneManager.Views
 
             // add new, or re add previously deleted lane
             STollLanes.Add(laneToAdd);
+            */
         }
 
         private void MakeTab(object sender, RoutedEventArgs e)
         {
+            /*
             Lane laneToAdd = (Lane)((MenuItem)sender).DataContext;
             if (STollLanes.Contains(laneToAdd))
             {
@@ -139,6 +151,7 @@ namespace TollLaneManager.Views
 
             // add new, or re add previously deleted lane
             STollLanes.Add(laneToAdd);
+            */
         }
 
         private void LanePropertiesMenuItem_Click(object sender, RoutedEventArgs e)
@@ -154,6 +167,7 @@ namespace TollLaneManager.Views
 
         private void MakeReportTab(object sender, RoutedEventArgs e)
         {
+            /*
             Report newReport = new Report("Custom Report", DateTime.Now, DateTime.Now.AddDays(-1), SelectedTollLane.logEntries.ToList());
             Reports.Add(newReport);
 
@@ -162,6 +176,7 @@ namespace TollLaneManager.Views
                 STollLanes.Remove(newReport);
             }
             STollLanes.Add(newReport);
+            */
         }
          
     }

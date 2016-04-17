@@ -9,6 +9,7 @@ namespace AutomatedRoadTollingSystem
 		String name;
 		//Address address; This is in the design document, but I'm not sure what it's for.
 		int numLanes;
+        decimal fee { get; } //How much toll this plaza charges.
 		List<Lane> lanes;
 		List<Camera> cameras;
 		List<RFIDReader> readers;

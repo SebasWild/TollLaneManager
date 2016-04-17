@@ -15,6 +15,8 @@ namespace AutomatedRoadTollingSystem
             //Deserialize a previous instance of the plaza and load it
             //enable cameras
             //enable RFID readers
+
+
 		}
 	}
 }

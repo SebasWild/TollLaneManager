@@ -1,7 +1,9 @@
 using AutomatedRoadTollingSystem;
 using System;
 using System.Collections.Generic;
-using TollLaneManager;
+using System.Data.SQLite;
+using System.Threading.Tasks;
+using AutomatedRoadTollingSystem;
 
 namespace AutomatedRoadTollingSystem
 {
@@ -12,42 +14,82 @@ namespace AutomatedRoadTollingSystem
     /// </summary>
     public class BillingModule
 	{
+        SQLiteConnection m_dbConnection;        //Connection to the DB instance
         public List<SmartCard> smartcards;
         public List<Account> accounts;
 
-
-        /// <summary>
-        ///     Takes the driver’s smart card number and charges the value of the toll.
-        ///     Parameter: smart card number
-        ///     Returns: a string representation of the balance of the cardholder.
-        /// </summary>
-        /// <param name="smartCardNumber"></param>
-        /// <param name="amountToCharge"></param>
-        /// <returns></returns>
-        public String chargeSmartCard(String smartCardNumber, decimal amountToCharge)
-		{
-            SmartCard cardToCharge = getCardByNum(smartCardNumber);
-            return chargeAccount(cardToCharge.getAccount(), amountToCharge).ToString();
-        }
-   
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public SmartCard getCardByNum(String smartCardNumber)
+        public BillingModule()
         {
-            SmartCard smartCard = new SmartCard();
+            m_dbConnection = new SQLiteConnection("Data Source = TollLaneManager.db");      //Path to our DB. (We would still need to open it to access DB)
+        }
 
-            foreach (SmartCard card in this.smartcards)
+        /// <summary>
+        /// Attempts to bill the account with the corresponding account number/license plate.
+        /// 
+        /// I am assuming that the smart card returns an account number...
+        /// </summary>
+        /// <param name="plateNo">plate number</param>
+        /// <param name="accountno">account number</param>
+        /// <param name="fee">How much to charge the dude</param>
+        /// <returns>Account after the toll has been charged</returns>
+        public async Task<Account> payToll(int accountno, String plateNo, decimal fee) {
+            if (plateNo == null) throw new ArgumentNullException("Plate # is null!");
+            try
             {
-                if (card.getSerialNumber() == smartCardNumber)
+                Account target = await getAccountByID(accountno);
+                if(target == null) throw new NotImplementedException("We have to implement billing someone with no known account!");
+                try
                 {
-                    smartCard = card;
+                    target.subtractFunds(fee);
+                    return target;
+                }
+                catch (Exception e)
+                {
+                    throw new NotImplementedException("We have to implement billing someone with no funds left over!");
                 }
             }
-
-            return smartCard;
+            catch(Exception e)
+            {
+                //Some DB Exception occured...
+            }
+            return null;
+        }
+        private async Task<Account> getAccountByID(int accountno)
+        {
+            await m_dbConnection.OpenAsync();
+            string query = @"SELECT * FROM account WHERE id ='" + accountno + "';";     //The SQL query to run
+            SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);           //Create the command using the connection and query
+            var result = await command.ExecuteReaderAsync();            //await the result.
+            if (result.HasRows)      //We actually got a result back, Account IDs are unique so there should always be one.
+            {
+                //We should only ever get one row, as we are querying using a primary key.
+                while(result.Read())
+                {
+                    return new Account((int)result["id"], (decimal)result["balance"]);      //Casting may not work...
+                }
+                return null;    //make compiler happy.
+            }
+            else                    //No account was returned, return null
+            {
+                return null;       
+            }
+        }
+        private async Task<Account> getAccountByPlateNo(String plateNo)
+        {
+            await m_dbConnection.OpenAsync();
+            string query = @"SELECT * FROM register WHERE plateNo ='" + plateNo + "';";     //The SQL query to run
+            SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);           //Create the command using the connection and query
+            var result = await command.ExecuteReaderAsync();            //await the result.
+            if(result.HasRows)
+            {
+                //We've got a hit on a plate number tied to an account.
+                //Again, this should only run once as I am assuming plates are unique...
+                while(result.Read())
+                {
+                    return await getAccountByID((int)result["id"]);
+                }
+            }          
+            return null;        //If we get here we no account for the plate number was found - gotta bill with snail mail.
         }
 
         /// <summary>
@@ -56,7 +98,7 @@ namespace AutomatedRoadTollingSystem
         /// <param name="account"></param>
         /// <param name="amountToCharge"></param>
         /// <returns></returns>
-        public decimal chargeAccount(Account account, decimal amountToCharge)
+        private decimal chargeAccount(Account account, decimal amountToCharge)
         {
              return account.subtractFunds(amountToCharge);
         }
@@ -69,7 +111,7 @@ namespace AutomatedRoadTollingSystem
         /// <param name="plateNumber"></param>
         /// <param name="amountToCharge"></param>
         /// <returns></returns>
-        public String chargePlateHolder(String plateNumber, decimal amountToCharge)
+        private String chargePlateHolder(String plateNumber, decimal amountToCharge)
 		{
             chargeAccount(getAccountByPlate(plateNumber), amountToCharge);
             return (String)plateNumber;
@@ -80,7 +122,7 @@ namespace AutomatedRoadTollingSystem
         /// </summary>
         /// <param name="plateNum"></param>
         /// <returns></returns>
-        public Account getAccountByPlate(String plateNum)
+        private Account getAccountByPlate(String plateNum)
         {
             Account account = new Account();
 

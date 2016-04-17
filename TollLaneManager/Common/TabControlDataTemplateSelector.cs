@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TollLaneManager.Common
+namespace AutomatedRoadTollingSystem.Common
 {
     class TabControlDataTemplateSelector : DataTemplateSelector
     {
@@ -14,9 +14,9 @@ namespace TollLaneManager.Common
         {
             FrameworkElement element = container as FrameworkElement;
 
-            if (item != null && item is TollLaneManager.Entities.Lane)
+            if (item != null && item is AutomatedRoadTollingSystem.Entities.Lane)
                 return element.FindResource("LaneDataTemplate") as DataTemplate;
-            else if (item != null && item is TollLaneManager.Entities.Report)
+            else if (item != null && item is AutomatedRoadTollingSystem.Entities.Report)
                 return element.FindResource("ReportDataTemplate") as DataTemplate;
             return null;
         }

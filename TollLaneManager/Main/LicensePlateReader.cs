@@ -46,7 +46,7 @@ namespace AutomatedRoadTollingSystem
                 return;
             }
             // Optionally apply pattern matching for a particular region
-            alpr.DefaultRegion = "md";
+            alpr.DefaultRegion = "nj";
 
             var results = alpr.Recognize("/path/to/image.jpg");
 

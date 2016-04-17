@@ -13,10 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TollLaneManager.Entities;
+using AutomatedRoadTollingSystem.Entities;
 
 
-namespace TollLaneManager.Entities
+namespace AutomatedRoadTollingSystem.Entities
 {
     /// <summary>
     /// This object represents a traffic lane

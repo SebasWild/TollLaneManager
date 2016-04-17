@@ -1,4 +1,4 @@
-﻿namespace TollLaneManager
+﻿namespace AutomatedRoadTollingSystem
 {
     internal class Address
     {

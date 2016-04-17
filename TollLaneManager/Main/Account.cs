@@ -4,18 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TollLaneManager
+namespace AutomatedRoadTollingSystem
 {
     public class Account
     {
-        private decimal funds;
-        private AccountHolder accountHolder;
-        private Vehicle vehicle;
-        private List<Transaction> transactions;
+        private int id { get; set; }
+        private decimal balance { get; set; }
+        private AccountHolder accountHolder { get; set; }
+        private Vehicle vehicle { get; set; }
+        private List<Transaction> transactions { get; set; }     //Why are we tracking this?
 
         public Account()
         {
             // New Account
+        }
+        public Account(int id, decimal balance)
+        {
+            this.id = id;
+            this.balance = balance;
         }
 
         public Account(AccountHolder accountHolder, Vehicle vehicle)
@@ -23,21 +29,22 @@ namespace TollLaneManager
             this.accountHolder = accountHolder;
             this.vehicle = vehicle;
             this.transactions = new List<Transaction>();
-            this.funds = 0;
+            this.balance = 0;
         }
-
+        //I don't think it is within the scope of this app to do anything besides remove funds...
         public decimal addFunds(decimal fundsToAdd)
         {
-            this.funds += fundsToAdd;
-            this.transactions.Add(new Transaction(fundsToAdd));
-            return this.funds;
+            this.balance += fundsToAdd;
+            //this.transactions.Add(new Transaction(fundsToAdd));
+            return this.balance;
         }
 
         public decimal subtractFunds(decimal fundsToSub)
         {
-            this.funds -= fundsToSub;
+            this.balance -= fundsToSub;
+            if (balance < fundsToSub) throw new Exception("Not enough funds!");
             //this.transactions.Add(new Transaction(-fundsToAdd)); // What is this supposed to do?
-            return this.funds;
+            return this.balance;
         }
         public String getPlate()
         {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TollLaneManager.Entities
+namespace AutomatedRoadTollingSystem.Entities
 {
     /// <summary>
     /// A Report will hold a log of events over a specified time period.
