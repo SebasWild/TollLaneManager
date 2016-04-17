@@ -39,7 +39,7 @@ namespace AutomatedRoadTollingSystem
         /// </summary>
         public void TestALPR()
         {
-            var alpr = new AlprNet("us", "/path/to/openalpr.conf", "/path/to/runtime_data");
+            var alpr = new AlprNet("us", @"\config\openalpr.conf", @"\runtime_data\");
             if (!alpr.IsLoaded())
             {
                 Console.WriteLine("OpenAlpr failed to load!");
