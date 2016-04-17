@@ -25,16 +25,19 @@ namespace AutomatedRoadTollingSystem
         /// Attempts to bill the account with the corresponding account number/license plate.
         /// 
         /// I am assuming that the smart card returns an account number...
+        /// Note the optional parameter accountno. 
+        /// You must supply at least a plate # for this to work.
         /// </summary>
         /// <param name="plateNo">plate number</param>
         /// <param name="accountno">account number</param>
         /// <param name="fee">How much to charge the dude</param>
         /// <returns>Account after the toll has been charged</returns>
-        public async Task<Account> payToll(int accountno, String plateNo, decimal fee) {
+        public async Task<Account> payToll(String plateNo, decimal fee, int accountno = -1) {
             if (plateNo == null) throw new ArgumentNullException("Plate # is null!");
             try
             {
-                Account target = await getAccountByID(accountno);
+                Account target;
+                if (accountno != -1) target = await getAccountByID(accountno); else target = await getAccountByPlateNo(plateNo);
                 if(target == null) throw new NotImplementedException("We have to implement billing someone with no known account!");
                 try
                 {
