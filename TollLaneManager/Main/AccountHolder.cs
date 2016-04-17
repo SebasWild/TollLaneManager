@@ -13,5 +13,18 @@ namespace AutomatedRoadTollingSystem
         private Address address;
         private Vehicle vehicle;
         //Stub
+        public AccountHolder(String firstName, String lastName)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+        public void setVehicle(Vehicle vehicle)
+        {
+            this.vehicle = vehicle;
+        }
+        public void setAddress(Address address)
+        {
+            this.address = address;
+        }
     }
 }

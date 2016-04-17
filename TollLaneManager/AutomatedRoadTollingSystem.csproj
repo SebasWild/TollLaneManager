@@ -116,6 +116,7 @@
     <Compile Include="Main\LicensePlateReader.cs" />
     <Compile Include="Main\MaintenanceModule.cs" />
     <Compile Include="Main\Monitor.cs" />
+    <Compile Include="Main\NonAccountHolder.cs" />
     <Compile Include="Main\Plaza.cs" />
     <Compile Include="Main\RFIDReader.cs" />
     <Compile Include="Main\Simulator.cs" />

@@ -10,8 +10,9 @@ namespace AutomatedRoadTollingSystem
 		//Takes the RFID data being transmitted by a passing car, and gets the corresponding smart card details connected to the account.
 		public String processRFID(Object rfid_Data)
 		{
-			return "";
-			//Stub
+            //I guess we can arbitrarilly define the data structure of the rfid data being sent?
+            //Can we just say the RFID data being sent is just the smart card number, since that is all we're getting from it?
+            return (String)rfid_Data;
 		}
 		public void enable()
 		{
