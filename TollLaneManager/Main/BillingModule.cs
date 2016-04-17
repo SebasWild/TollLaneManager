@@ -1,16 +1,14 @@
-using AutomatedRoadTollingSystem;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
-using AutomatedRoadTollingSystem;
 
 namespace AutomatedRoadTollingSystem
 {
-	
-	/// <summary>
+
+    /// <summary>
     ///     This module is used to bill each car that passes through the tolling system either directly though the drivers smart card (SRS Functional Requirements 4.2) 
-	///     or indirectly through the driver's license plate number (SRS Functional Requirements 4.3).
+    ///     or indirectly through the driver's license plate number (SRS Functional Requirements 4.3).
     /// </summary>
     public class BillingModule
 	{

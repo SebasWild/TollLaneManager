@@ -1,6 +1,6 @@
 ﻿namespace AutomatedRoadTollingSystem
 {
-    internal class Address
+    public class Address
     {
         public string street;
         public string zip;
