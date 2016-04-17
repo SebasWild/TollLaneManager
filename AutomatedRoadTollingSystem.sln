@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TollLaneManager", "TollLaneManager\TollLaneManager.csproj", "{3AD77B37-6E95-4B44-A6B5-FD978D5B00CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedRoadTollingSystem", "TollLaneManager\AutomatedRoadTollingSystem.csproj", "{3AD77B37-6E95-4B44-A6B5-FD978D5B00CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
