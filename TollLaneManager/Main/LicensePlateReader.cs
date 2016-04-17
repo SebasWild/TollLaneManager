@@ -39,6 +39,11 @@ namespace AutomatedRoadTollingSystem
         /// </summary>
         public void TestALPR()
         {
+            /*
+             * NOTE: three more DLLs are required for openalpr: liblept170.dll and opencv_*.dll
+             * Download them from the openalpr website.
+             * These go wherever the openalpr dll is...like in the \bin\debug dir, etc.
+             * */
             var alpr = new AlprNet("us", @"\config\openalpr.conf", @"\runtime_data\");
             if (!alpr.IsLoaded())
             {
