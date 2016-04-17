@@ -12,7 +12,7 @@ namespace AutomatedRoadTollingSystem
     /// </summary>
     public class BillingModule
 	{
-        SQLiteConnection m_dbConnection;        //Connection to the DB instance
+        SQLiteConnection m_dbConnection;//Connection to the DB instance
         public List<SmartCard> smartcards;
         public List<Account> accounts;
 

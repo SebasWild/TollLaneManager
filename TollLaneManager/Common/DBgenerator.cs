@@ -52,14 +52,33 @@ namespace AutomatedRoadTollingSystem.Common
 
             var command = conn.CreateCommand();
 
+            // DELETE FROM TABLES
+            command.CommandText = "Delete FROM register;"; // Remove all the info before the table is populated again
+            command.ExecuteNonQuery();
+            command.CommandText = "Delete FROM account;"; // Remove all the info before the table is populated again
+            command.ExecuteNonQuery();
+            command.CommandText = "Delete FROM accountholder;"; // Remove all the info before the table is populated again         
+            command.ExecuteNonQuery();
+
             //INSERT INTO for accountholder
             command.CommandText = "INSERT INTO accountholder VALUES(0, 'Sebastian', 'Wild', '6095047826', 'USA', 'Glassboro', 'Williams St.', '08028', 'wilds62@students.rowan.edu');";
+            command.CommandText = "INSERT INTO accountholder VALUES(1, 'Frank', 'Staas', '6094055772', 'USA', 'Haddonfield', 'Williams St.', '', '');";
+            command.CommandText = "INSERT INTO accountholder VALUES(2, 'Carl', 'Johns', '', 'USA', 'Glassboro', 'Williams St.', '08028', '');";
+            command.CommandText = "INSERT INTO accountholder VALUES(3, 'Lisa', 'Max', '', 'USA', 'Glassboro', 'Williams St.', '08028', '');";
             command.ExecuteNonQuery();
-            //INSERT INTO for account
+           
+            //INSERT INTO for account          
             command.CommandText = "INSERT INTO account VALUES(0, 0, 1337.00);";
+            command.CommandText = "INSERT INTO account VALUES(1, 1, 4311.00);";
+            command.CommandText = "INSERT INTO account VALUES(2, 2, 4474.00);";
+            command.CommandText = "INSERT INTO account VALUES(3, 3, 4467.00);";
             command.ExecuteNonQuery();
+            
             //INSERT INTO for register
             command.CommandText = "INSERT INTO register VALUES(0, 'QWERTY');";
+            command.CommandText = "INSERT INTO register VALUES(1, 'JDIELS');";
+            command.CommandText = "INSERT INTO register VALUES(2, '1000DD');";
+            command.CommandText = "INSERT INTO register VALUES(3, 'JFED90');";
             command.ExecuteNonQuery();
         }
     }
