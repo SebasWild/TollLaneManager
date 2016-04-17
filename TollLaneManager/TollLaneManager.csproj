@@ -115,6 +115,7 @@
     <Compile Include="Production Code\LicensePlateReader.cs" />
     <Compile Include="Production Code\MaintenanceModule.cs" />
     <Compile Include="Production Code\Monitor.cs" />
+    <Compile Include="Production Code\NonAccountHolder.cs" />
     <Compile Include="Production Code\Plaza.cs" />
     <Compile Include="Production Code\RFIDReader.cs" />
     <Compile Include="Production Code\Simulator.cs" />

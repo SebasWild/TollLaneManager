@@ -29,7 +29,7 @@ namespace TollLaneManager
         public decimal subtractFunds(decimal fundsToSub)
         {
             this.funds - fundsToSub;
-            this.transactions.Add(new Transaction(-fundsToAdd));
+            this.transactions.Add(new Transaction(-fundsToSub));
             return this.funds;
         }
         public String getPlate()
