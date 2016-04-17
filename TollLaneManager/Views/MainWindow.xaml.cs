@@ -29,7 +29,7 @@ namespace AutomatedRoadTollingSystem.Views
             InitializeLanes();
             //TODO: call all this junk somewhere else...
             AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
-            rdr.TestALPR();
+           // rdr.TestALPR();
             DBgenerator.initDB();       //Initialize the database, fill in some data.
 
             //Quick test of basic billing functionality:
