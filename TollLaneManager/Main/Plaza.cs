@@ -26,7 +26,20 @@ namespace AutomatedRoadTollingSystem
 		{
 			return this.cameras;
 		}
-		public List<RFIDReader> getReaders()
+        public void enableCameras()
+        {
+            foreach (Camera c in this.cameras){
+                c.enable();
+             }
+        }
+        public void enableReaders()
+        {
+            foreach (RFIDReader r in this.readers)
+            {
+                r.enable();
+            }
+        }
+        public List<RFIDReader> getReaders()
 		{
 			return this.readers;
 		}
@@ -40,5 +53,55 @@ namespace AutomatedRoadTollingSystem
 		{
 			this.lanes.Remove(lane);
 		}
-	}
+        public void serialize()
+        {
+
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                XmlSerializer serializer = new XmlSerializer(Plaza);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    serializer.Serialize(stream, this);
+                    stream.Position = 0;
+                    xmlDocument.Load(stream);
+                    xmlDocument.Save("plaza.xml");
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log exception here
+            }
+        }
+        public static Plaza load()
+        {
+            try
+            {
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load("plaza.xml");
+                string xmlString = xmlDocument.OuterXml;
+
+                using (StringReader read = new StringReader(xmlString))
+                {
+                    Type outType = Plaza;
+
+                    XmlSerializer serializer = new XmlSerializer(outType);
+                    using (XmlReader reader = new XmlTextReader(read))
+                    {
+                        objectOut = serializer.Deserialize(reader);
+                        reader.Close();
+                    }
+
+                    read.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                //Log exception here
+            }
+
+            return (Plaza)objectOut;
+        }
+    }
 }
