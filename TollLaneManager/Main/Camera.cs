@@ -19,8 +19,11 @@ namespace AutomatedRoadTollingSystem
             var rand = new Random();
             var files = Directory.GetFiles(".\\SimulatedPictures", "*.jpg");
             LicensePlateReader reader = new LicensePlateReader();
-            return Image.FromFile(files[rand.Next(files.Length)]);
-
+            String file = files[rand.Next(files.Length)];
+            Image im = Image.FromFile(files[rand.Next(files.Length)]);
+            //fakes it, doesn't use the Image for anything, returns the filename.
+            //Remove this comment before submitting files. 
+            return file;
         }
 
 		//Disables the camera, closes the lane the camera is monitoring. 
