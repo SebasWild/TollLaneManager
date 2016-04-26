@@ -1,6 +1,9 @@
 using AutomatedRoadTollingSystem;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace AutomatedRoadTollingSystem
 {
@@ -53,13 +56,14 @@ namespace AutomatedRoadTollingSystem
 		{
 			this.lanes.Remove(lane);
 		}
+        
         public void serialize()
         {
-
+            /*
             try
             {
                 XmlDocument xmlDocument = new XmlDocument();
-                XmlSerializer serializer = new XmlSerializer(Plaza);
+                XmlSerializer serializer = new XmlSerializer(Plaza);        //Whats this? Gives build error. Is this the correct usage?
                 using (MemoryStream stream = new MemoryStream())
                 {
                     serializer.Serialize(stream, this);
@@ -73,9 +77,11 @@ namespace AutomatedRoadTollingSystem
             {
                 //Log exception here
             }
+            */
         }
         public static Plaza load()
         {
+            /*
             try
             {
                 XmlDocument xmlDocument = new XmlDocument();
@@ -101,7 +107,10 @@ namespace AutomatedRoadTollingSystem
                 //Log exception here
             }
 
-            return (Plaza)objectOut;
+            return (Plaza)objectOut;        //never declared...
+            */
+            return null;
         }
+        
     }
 }

@@ -55,6 +55,14 @@
                 Click="DeleteLaneClick" Style="{DynamicResource ImageButtonStyle}">
                 <Image Source="/Assets/Icons/removeIcon.ico"/>
             </Button>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+            <Button x:Name="TriggerVehicle"
+            		Height="19"
+            		HorizontalAlignment="Right"
+            		VerticalAlignment="Center" 
+            		Click="TriggerVehicle_Click" Style="{DynamicResource ImageButtonStyle}">
+                <Image Source="/Assets/Icons/car.ico"/>
+            </Button>
 
         </StackPanel>
         <!--Left pane-->
@@ -167,7 +175,8 @@
                     VerticalAlignment="Stretch" 
                     ItemsSource="{Binding STollLanes}"
                     ContentTemplateSelector="{StaticResource TabControlDataTemplateSelector}">
-<!--ContentTemplateSelector enables to display both reports and lanes in the same tab control.-->
+                    <!--ContentTemplateSelector enables to display both reports and lanes in the same tab control.-->
+            <!--ItemTemplate defines the look of the tab header.-->
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>                            

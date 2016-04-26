@@ -157,6 +157,7 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
                 <!--StackPanel for upper right box-->
             </StackPanel>
+            <!--ListBox displaying toStrings of recent events that have happened in this lane.-->
             <ListBox x:Name="LaneLogListBox"
                              Grid.Column="0"
                              Grid.ColumnSpan="2"

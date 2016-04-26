@@ -46,21 +46,21 @@ namespace AutomatedRoadTollingSystem.Views
         //The View binds to the following properties. 
         #region DependencyProperties
         public static DependencyProperty SelectedLaneProperty = DependencyProperty.Register("SelectedTollLane", typeof(Lane), typeof(MainWindow), null);
-        public Lane SelectedTollLane
+        public AutomatedRoadTollingSystem.Entities.Lane SelectedTollLane
         {
             get
             {
-                return (Lane)GetValue(SelectedLaneProperty);
+                return (AutomatedRoadTollingSystem.Entities.Lane)GetValue(SelectedLaneProperty);
             }
             set { SetValue(SelectedLaneProperty, value); }
         }
 
-        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Lane>()));
-        public ObservableCollection<Lane> TollLanes
+        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>()));
+        public ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane> TollLanes
         {
             get
             {
-                    return (ObservableCollection<Lane>)GetValue(TollLanesProperty); 
+                    return (ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>)GetValue(TollLanesProperty); 
             }
             set { SetValue(TollLanesProperty, value); }
         }
@@ -93,30 +93,30 @@ namespace AutomatedRoadTollingSystem.Views
 
         public void NewLaneClick(object sender, RoutedEventArgs e)
         {
-            /*
+            
             Random rand = new Random();
             int random = rand.Next(0, 1000);
-            TollLanes.Add(new Lane("Lane #" + random, random));
+            TollLanes.Add(new AutomatedRoadTollingSystem.Entities.Lane("Lane #" + random, random));
             TollLanes.Last().status = rand.Next(0, 3);
-            */
+            
         }
 
         private void DeleteLaneClick(object sender, RoutedEventArgs e)
-        { /*
+        { 
             if (TollLanes.Count != 0)
                 STollLanes.Remove(TollLanes.ElementAt(TollLanes.Count - 1));
             TollLanes.RemoveAt(TollLanes.Count - 1);
-            */
+            
 
         }
 
         private void DeleteLaneContextClick(object sender, RoutedEventArgs e)
         {
-            /*
-            Lane laneToRemove = (Lane)((MenuItem)sender).DataContext;
+
+            AutomatedRoadTollingSystem.Entities.Lane laneToRemove = (AutomatedRoadTollingSystem.Entities.Lane)((MenuItem)sender).DataContext;
             STollLanes.Remove(laneToRemove);
             TollLanes.Remove(laneToRemove);
-            */
+            
         }
 
         /// <summary>
@@ -126,8 +126,8 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
-            /*
-            Lane laneToAdd = ((Lane)((ListBox)sender).SelectedItem);
+
+            AutomatedRoadTollingSystem.Entities.Lane laneToAdd = ((AutomatedRoadTollingSystem.Entities.Lane)((ListBox)sender).SelectedItem);
             if (STollLanes.Contains(laneToAdd))
             {
                 // remove it
@@ -136,13 +136,13 @@ namespace AutomatedRoadTollingSystem.Views
 
             // add new, or re add previously deleted lane
             STollLanes.Add(laneToAdd);
-            */
+            
         }
 
         private void MakeTab(object sender, RoutedEventArgs e)
         {
-            /*
-            Lane laneToAdd = (Lane)((MenuItem)sender).DataContext;
+
+            AutomatedRoadTollingSystem.Entities.Lane laneToAdd = (AutomatedRoadTollingSystem.Entities.Lane)((MenuItem)sender).DataContext;
             if (STollLanes.Contains(laneToAdd))
             {
                 // remove it
@@ -151,7 +151,7 @@ namespace AutomatedRoadTollingSystem.Views
 
             // add new, or re add previously deleted lane
             STollLanes.Add(laneToAdd);
-            */
+            
         }
 
         private void LanePropertiesMenuItem_Click(object sender, RoutedEventArgs e)
@@ -167,7 +167,7 @@ namespace AutomatedRoadTollingSystem.Views
 
         private void MakeReportTab(object sender, RoutedEventArgs e)
         {
-            /*
+            
             Report newReport = new Report("Custom Report", DateTime.Now, DateTime.Now.AddDays(-1), SelectedTollLane.logEntries.ToList());
             Reports.Add(newReport);
 
@@ -176,8 +176,17 @@ namespace AutomatedRoadTollingSystem.Views
                 STollLanes.Remove(newReport);
             }
             STollLanes.Add(newReport);
-            */
+            
         }
-         
+        /// <summary>
+        /// Used for simulation purposes. Will trigger a car to pass through the currently selected lane.
+        /// This should trigger subsequent billing and all kinds of stuff.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException("Simulating a passing car is not implemented!");
+        }
     }
 }

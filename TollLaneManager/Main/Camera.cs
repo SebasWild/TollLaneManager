@@ -23,7 +23,7 @@ namespace AutomatedRoadTollingSystem
             Image im = Image.FromFile(files[rand.Next(files.Length)]);
             //fakes it, doesn't use the Image for anything, returns the filename.
             //Remove this comment before submitting files. 
-            return file;
+            return im;
         }
 
 		//Disables the camera, closes the lane the camera is monitoring. 
