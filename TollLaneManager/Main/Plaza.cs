@@ -59,11 +59,11 @@ namespace AutomatedRoadTollingSystem
         
         public void serialize()
         {
-            /*
+
             try
             {
                 XmlDocument xmlDocument = new XmlDocument();
-                XmlSerializer serializer = new XmlSerializer(Plaza);        //Whats this? Gives build error. Is this the correct usage?
+                XmlSerializer serializer = new XmlSerializer(typeof(Plaza));        //Whats this? Gives build error. Is this the correct usage?
                 using (MemoryStream stream = new MemoryStream())
                 {
                     serializer.Serialize(stream, this);
@@ -77,20 +77,20 @@ namespace AutomatedRoadTollingSystem
             {
                 //Log exception here
             }
-            */
+
         }
         public static Plaza load()
         {
-            /*
+            Object objectOut = null;
             try
             {
                 XmlDocument xmlDocument = new XmlDocument();
                 xmlDocument.Load("plaza.xml");
                 string xmlString = xmlDocument.OuterXml;
-
+                
                 using (StringReader read = new StringReader(xmlString))
                 {
-                    Type outType = Plaza;
+                    Type outType = typeof(Plaza);
 
                     XmlSerializer serializer = new XmlSerializer(outType);
                     using (XmlReader reader = new XmlTextReader(read))
@@ -104,12 +104,10 @@ namespace AutomatedRoadTollingSystem
             }
             catch (Exception ex)
             {
-                //Log exception here
+                ;
             }
 
-            return (Plaza)objectOut;        //never declared...
-            */
-            return null;
+            return (Plaza)objectOut;        
         }
         
     }
