@@ -102,10 +102,12 @@ namespace AutomatedRoadTollingSystem
         /// <returns></returns>
         private void billNonAccountHolder(String plateNo,decimal fee)
         {
-            String fileName = "test1.txt";  //TODO add transaction number here
+            Transaction t = new Transaction(fee);
+            String fileName = "TRANSACTION-"+t.getTransactionNum()+".txt";  
             System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\TEMP\\" + fileName, true);
             file.WriteLine("Plate Number: " + plateNo);
-            file.WriteLine("Transaction Number: "); //TODO add transaction number here
+            file.WriteLine("Transaction Number: " + t.getTransactionNum());
+            file.WriteLine("Timestamp: " + t.getTime());
             file.WriteLine("Toll Amount: ", fee);
             file.Close();
         }

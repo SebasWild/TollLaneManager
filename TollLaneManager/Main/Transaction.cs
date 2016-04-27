@@ -19,5 +19,13 @@ namespace AutomatedRoadTollingSystem
             this.timestamp = DateTime.Now;
             this.amountCharged = amountCharged;
         }
+        public int getTransactionNum()
+        {
+            return this.transactionNum;
+        }
+        public DateTime getTime()
+        {
+            return this.timestamp;
+        }
     }
 }
