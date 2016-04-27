@@ -23,7 +23,7 @@ namespace AutomatedRoadTollingSystem.Entities
     /// 
     /// PROTOTYPE CODE
     /// </summary>
-    [System.Obsolete("New class in Production Code dir. <- Consider moving this here to 'Entities'")]
+   // [System.Obsolete("New class in Production Code dir. <- Consider moving this here to 'Entities'")]
     public class Lane : Tabitem
     {
         public string name { get; set; }

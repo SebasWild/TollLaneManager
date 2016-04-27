@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace AutomatedRoadTollingSystem
 {
+    [System.Obsolete("Consider using DBgenerator.createTransaction")]
     public class Transaction
     {
+       
         private static int transactionCount = 0;
         private int transactionNum;
         private decimal amountCharged;

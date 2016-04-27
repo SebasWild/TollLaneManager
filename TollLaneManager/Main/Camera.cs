@@ -17,12 +17,13 @@ namespace AutomatedRoadTollingSystem
         public String takePictureSimulated()
         {
             var rand = new Random();
-            var files = Directory.GetFiles(".\\SimulatedPictures", "*.jpg");
+            var files = Directory.GetFiles(@"..\\..\\..\\SimulatedPictures", "*.jpg");
             LicensePlateReader reader = new LicensePlateReader();
             String file = files[rand.Next(files.Length)];
-            Image im = Image.FromFile(files[rand.Next(files.Length)]);
 
-            return file;
+            Image im = Image.FromFile(files[rand.Next(files.Length)]); // Not needed
+
+            return Path.GetFileNameWithoutExtension(file);
         }
 
 		//Disables the camera, closes the lane the camera is monitoring. 

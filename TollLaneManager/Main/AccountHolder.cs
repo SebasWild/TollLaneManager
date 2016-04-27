@@ -8,7 +8,7 @@ namespace AutomatedRoadTollingSystem
 {
     public class AccountHolder
     {
-        private String firstName;
+        public String firstName;
         private String lastName;
         private Address address;
         private Vehicle vehicle;

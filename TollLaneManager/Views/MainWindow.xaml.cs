@@ -46,21 +46,21 @@ namespace AutomatedRoadTollingSystem.Views
         //The View binds to the following properties. 
         #region DependencyProperties
         public static DependencyProperty SelectedLaneProperty = DependencyProperty.Register("SelectedTollLane", typeof(Lane), typeof(MainWindow), null);
-        public AutomatedRoadTollingSystem.Entities.Lane SelectedTollLane
+        public Entities.Lane SelectedTollLane
         {
             get
             {
-                return (AutomatedRoadTollingSystem.Entities.Lane)GetValue(SelectedLaneProperty);
+                return (Entities.Lane)GetValue(SelectedLaneProperty);
             }
             set { SetValue(SelectedLaneProperty, value); }
         }
 
-        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>()));
-        public ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane> TollLanes
+        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<Entities.Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Entities.Lane>()));
+        public ObservableCollection<Entities.Lane> TollLanes
         {
             get
             {
-                    return (ObservableCollection<AutomatedRoadTollingSystem.Entities.Lane>)GetValue(TollLanesProperty); 
+                    return (ObservableCollection<Entities.Lane>)GetValue(TollLanesProperty); 
             }
             set { SetValue(TollLanesProperty, value); }
         }
@@ -96,7 +96,7 @@ namespace AutomatedRoadTollingSystem.Views
             
             Random rand = new Random();
             int random = rand.Next(0, 1000);
-            TollLanes.Add(new AutomatedRoadTollingSystem.Entities.Lane("Lane #" + random, random));
+            TollLanes.Add(new Entities.Lane("Lane #" + random, random));
             TollLanes.Last().status = rand.Next(0, 3);
             
         }
@@ -113,7 +113,7 @@ namespace AutomatedRoadTollingSystem.Views
         private void DeleteLaneContextClick(object sender, RoutedEventArgs e)
         {
 
-            AutomatedRoadTollingSystem.Entities.Lane laneToRemove = (AutomatedRoadTollingSystem.Entities.Lane)((MenuItem)sender).DataContext;
+            Entities.Lane laneToRemove = (Entities.Lane)((MenuItem)sender).DataContext;
             STollLanes.Remove(laneToRemove);
             TollLanes.Remove(laneToRemove);
             
@@ -127,7 +127,7 @@ namespace AutomatedRoadTollingSystem.Views
         private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
 
-            AutomatedRoadTollingSystem.Entities.Lane laneToAdd = ((AutomatedRoadTollingSystem.Entities.Lane)((ListBox)sender).SelectedItem);
+            Entities.Lane laneToAdd = ((Entities.Lane)((ListBox)sender).SelectedItem);
             if (STollLanes.Contains(laneToAdd))
             {
                 // remove it
@@ -142,7 +142,7 @@ namespace AutomatedRoadTollingSystem.Views
         private void MakeTab(object sender, RoutedEventArgs e)
         {
 
-            AutomatedRoadTollingSystem.Entities.Lane laneToAdd = (AutomatedRoadTollingSystem.Entities.Lane)((MenuItem)sender).DataContext;
+            Entities.Lane laneToAdd = (Entities.Lane)((MenuItem)sender).DataContext;
             if (STollLanes.Contains(laneToAdd))
             {
                 // remove it
@@ -167,7 +167,7 @@ namespace AutomatedRoadTollingSystem.Views
 
         private void MakeReportTab(object sender, RoutedEventArgs e)
         {
-            
+          
             Report newReport = new Report("Custom Report", DateTime.Now, DateTime.Now.AddDays(-1), SelectedTollLane.logEntries.ToList());
             Reports.Add(newReport);
 
@@ -186,7 +186,16 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException("Simulating a passing car is not implemented!");
+            decimal fee = 5.20m;
+            Camera c = new Camera();
+            BillingModule bm = new BillingModule();
+            string capturedPlateNo = c.takePictureSimulated();
+
+            Account a =  bm.payToll(capturedPlateNo, fee);
+
+            MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " :" + a.getPlate());
+
+            //throw new NotImplementedException("Simulating a passing car is not implemented!");
         }
     }
 }
