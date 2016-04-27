@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomatedRoadTollingSystem
 {
-    [System.Obsolete("Consider using DBgenerator.createTransaction")]
+    [System.Obsolete("Consider using DBActions.createTransaction")]
     public class Transaction
     {
        

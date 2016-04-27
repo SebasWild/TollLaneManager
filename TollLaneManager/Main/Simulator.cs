@@ -15,7 +15,7 @@ namespace AutomatedRoadTollingSystem
         {
             //Test billing a dummy acc. WIP code
             BillingModule bm = new BillingModule();
-            bm.payToll("QWERTY", 100.00m, accountno: 0);        //runs sync but w/e
+           // bm.payTollViaPlate("QWERTY", 100.00m, accountno: 0);        //runs sync but w/e
             
 
         }

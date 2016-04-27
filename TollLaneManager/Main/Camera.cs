@@ -21,7 +21,7 @@ namespace AutomatedRoadTollingSystem
             LicensePlateReader reader = new LicensePlateReader();
             String file = files[rand.Next(files.Length)];
 
-            Image im = Image.FromFile(files[rand.Next(files.Length)]); // Not needed
+            //Image im = Image.FromFile(files[rand.Next(files.Length)]); // Not needed
 
             return Path.GetFileNameWithoutExtension(file);
         }

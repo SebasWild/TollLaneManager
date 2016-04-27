@@ -30,7 +30,7 @@ namespace AutomatedRoadTollingSystem.Views
             //TODO: call all this junk somewhere else...
             AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
            //rdr.TestALPR();
-            DBgenerator.initDB();       //Initialize the database, fill in some data.
+            DBActions.initDB();       //Initialize the database, fill in some data.
 
             //Quick test of basic billing functionality:
             Simulator.testBillingModule();
@@ -187,13 +187,26 @@ namespace AutomatedRoadTollingSystem.Views
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
             decimal fee = 5.20m;
+
+            // CAMERA SIMULATION
             Camera c = new Camera();
-            BillingModule bm = new BillingModule();
             string capturedPlateNo = c.takePictureSimulated();
 
-            Account a =  bm.payToll(capturedPlateNo, fee);
+            //BILLING SIMULATION
+            BillingModule bm = new BillingModule();         
+            bm.payTollViaPlate(capturedPlateNo, fee);
 
-            MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " :" + a.getPlate());
+            int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
+            if (accountID > -1)
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
+                
+            } else
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
+            }
+
+            
 
             //throw new NotImplementedException("Simulating a passing car is not implemented!");
         }

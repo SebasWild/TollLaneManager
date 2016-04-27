@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace AutomatedRoadTollingSystem
 {
+    [System.Obsolete("Consider using DBActions to retreive account information from the database.")]
     public class Account
     {
-        private int id { get; set; }
-        private decimal balance { get; set; }
+        public int id { get; set; }
+        public decimal balance { get; set; }
         public AccountHolder accountHolder { get; set; }
-        private Vehicle vehicle { get; set; }
+        public Vehicle vehicle { get; set; }
 
         public Account()
         {
@@ -29,25 +30,6 @@ namespace AutomatedRoadTollingSystem
             this.accountHolder = accountHolder;
             this.vehicle = vehicle;
             this.balance = 0;
-        }
-
-
-        /// <summary>
-        /// Subtracts specified ammount of funds from the account.
-        /// * NOTE: this can be negitive this means the customer ows the company money.
-        /// </summary>
-        /// <param name="fundsToSub">How much the cusomter is being billed</param>
-        /// <returns>The current balance of the account</returns>
-        public decimal subtractFunds(decimal fundsToSub)
-        {
-            this.balance -= fundsToSub;
-            return this.balance;
-        }
-
-
-        public String getPlate()
-        {
-            return DBgenerator.getPlateFromAccountID(this.id);
         }
     }
 }
