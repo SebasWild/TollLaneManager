@@ -35,6 +35,14 @@ namespace AutomatedRoadTollingSystem
                 c.enable();
              }
         }
+        public void addCamera(Camera c)
+        {
+            this.cameras.Add(c);
+        }
+        public void addReader(RFIDReader r)
+        {
+            this.readers.Add(r);
+        }    
         public void enableReaders()
         {
             foreach (RFIDReader r in this.readers)

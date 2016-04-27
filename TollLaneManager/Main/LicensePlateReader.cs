@@ -2,7 +2,7 @@ using AutomatedRoadTollingSystem;
 using System;
 using System.IO;
 using System.Drawing;
-using openalprnet;
+//using openalprnet;
 namespace AutomatedRoadTollingSystem
 {
 	/// <summary>
@@ -37,13 +37,16 @@ namespace AutomatedRoadTollingSystem
         /// <summary>
         ///     This has no functionality as of yet, still needs to be tested
         /// </summary>
+        /// 
+        /*
         public void TestALPR()
         {
             /*
              * NOTE: three more DLLs are required for openalpr: liblept170.dll and opencv_*.dll
              * Download them from the openalpr website.
              * These go wherever the openalpr dll is...like in the \bin\debug dir, etc.
-             * */
+             */
+             /*
             var alpr = new AlprNet("us", @"\config\openalpr.conf", @"\runtime_data\");
             if (!alpr.IsLoaded())
             {
@@ -66,8 +69,8 @@ namespace AutomatedRoadTollingSystem
                                       plate.OverallConfidence, plate.MatchesTemplate);
                 }
             }
+          */
 
-        }
 
     }
 }
