@@ -81,61 +81,16 @@ namespace AutomatedRoadTollingSystem
             string query = @"SELECT * FROM register WHERE plateNo ='" + plateNo + "';";     //The SQL query to run
             SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);           //Create the command using the connection and query
             var result = await command.ExecuteReaderAsync();            //await the result.
-            if(result.HasRows)
+            if (result.HasRows)
             {
                 //We've got a hit on a plate number tied to an account.
                 //Again, this should only run once as I am assuming plates are unique...
-                while(result.Read())
+                while (result.Read())
                 {
                     return await getAccountByID((int)result["id"]);
                 }
-            }          
-            return null;        //If we get here we no account for the plate number was found - gotta bill with snail mail.
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="account"></param>
-        /// <param name="amountToCharge"></param>
-        /// <returns></returns>
-        private decimal chargeAccount(Account account, decimal amountToCharge)
-        {
-             return account.subtractFunds(amountToCharge);
-        }
-        
-        /// <summary>
-        ///     Sends the plate off to a billing site to charge the plate holder the toll.
-        ///     Parameter: license plate number
-        ///     returns: a string representation of the balance of the plateholder. 
-        /// </summary>
-        /// <param name="plateNumber"></param>
-        /// <param name="amountToCharge"></param>
-        /// <returns></returns>
-        private String chargePlateHolder(String plateNumber, decimal amountToCharge)
-		{
-            chargeAccount(getAccountByPlate(plateNumber), amountToCharge);
-            return (String)plateNumber;
-		}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="plateNum"></param>
-        /// <returns></returns>
-        private Account getAccountByPlate(String plateNum)
-        {
-            Account account = new Account();
-
-            foreach (Account a in this.accounts)
-            {
-                if (a.getPlate() == plateNum)
-                {
-                    account = a;
-                }
             }
-
-            return account;
+            return null;        //If we get here we no account for the plate number was found - gotta bill with snail mail.
         }
 	}
 }
