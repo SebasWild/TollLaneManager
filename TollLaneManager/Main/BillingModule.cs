@@ -38,7 +38,7 @@ namespace AutomatedRoadTollingSystem
             {
                 Account target;
                 if (accountno != -1) target = await getAccountByID(accountno); else target = await getAccountByPlateNo(plateNo);
-                if(target == null) throw new NotImplementedException("We have to implement billing someone with no known account!");
+                if (target == null) billNonAccountHolder(plateNo, fee);
                 try
                 {
                     target.subtractFunds(fee);
@@ -92,5 +92,23 @@ namespace AutomatedRoadTollingSystem
             }
             return null;        //If we get here we no account for the plate number was found - gotta bill with snail mail.
         }
+        /// <summary>
+        /// Creates a txt file that saves 
+        /// necessary information needed to send license plate info to
+        /// third party for billing
+        /// </summary>
+        /// <param name="plateNo">plate number</param>
+        /// <param name="fee">How much to charge the dude</param>
+        /// <returns></returns>
+        private void billNonAccountHolder(String plateNo,decimal fee)
+        {
+            String fileName = "test1.txt";  //TODO add transaction number here
+            System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\TEMP\\" + fileName, true);
+            file.WriteLine("Plate Number: " + plateNo);
+            file.WriteLine("Transaction Number: "); //TODO add transaction number here
+            file.WriteLine("Toll Amount: ", fee);
+            file.Close();
+        }
+    
 	}
 }
