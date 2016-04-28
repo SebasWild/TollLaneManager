@@ -11,24 +11,8 @@ namespace AutomatedRoadTollingSystem
 		//Turns all toll lane cameras on to take pictures of passing cars.
 		public void start()
 		{
-            //Stub
-            //Deserialize a previous instance of the plaza and load it
-            try
-            {
-
-            }
-            catch
-            {
-                this.plaza.addCamera(new Camera());
-                this.plaza.addReader(new RFIDReader());
-                this.plaza.addLane(0, "Lane 0");
-            }
+   
 
 		}
-
-        public void close()
-        {
-            this.plaza.serialize();
-        }
 	}
 }
