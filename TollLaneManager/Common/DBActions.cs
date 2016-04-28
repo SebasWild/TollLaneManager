@@ -192,7 +192,12 @@ namespace AutomatedRoadTollingSystem.Common
                 rtn = "NEW TRANSACTIOIN: " + plateNo + " billed for $" + fee.ToString() + ".";
             } else
             {
-                rtn = "Plate not found: " + plateNo;
+                var fileName = string.Format(@"{0}.txt", Guid.NewGuid());
+                System.IO.StreamWriter file = new System.IO.StreamWriter("c:\\TEMP\\" + fileName, true);
+                file.WriteLine("Plate Number: " + plateNo);
+                file.WriteLine("Toll Amount: " + fee);
+                file.Close();
+                //rtn = "Plate not found: " + plateNo;
             }
             return rtn;
         }
