@@ -43,6 +43,16 @@ namespace AutomatedRoadTollingSystem.Views
             set { SetValue(SelectedLaneProperty, value); }
         }
 
+        public static DependencyProperty GlobalStatusProperty = DependencyProperty.Register("globalStatus", typeof(int), typeof(MainWindow), null);
+        public int GlobalStatus
+        {
+            get
+            {
+                return (int)GetValue(GlobalStatusProperty);
+            }
+            set { SetValue(GlobalStatusProperty, value); }
+        }
+
         public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Lane>()));
         public ObservableCollection<Lane> TollLanes
         {
@@ -52,7 +62,7 @@ namespace AutomatedRoadTollingSystem.Views
             }
             set { SetValue(TollLanesProperty, value); }
         }
-        public static DependencyProperty IsMainGridVisibleProperty = DependencyProperty.Register("IsGridMainVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+        public static DependencyProperty IsMainGridVisibleProperty = DependencyProperty.Register("IsMainGridVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
         public bool IsMainGridVisible
         {
             get
@@ -117,6 +127,7 @@ namespace AutomatedRoadTollingSystem.Views
         private void OpenLaneContextClick(object sender, RoutedEventArgs e)
         {
             SelectedTollLane.open();
+            evaluateGlobalStatus();
         }
         /// <summary>
         /// Close the selected lane.
@@ -126,6 +137,7 @@ namespace AutomatedRoadTollingSystem.Views
         private void CloseLaneContextClick(object sender, RoutedEventArgs e)
         {
             SelectedTollLane.close();
+            evaluateGlobalStatus();
         }
         /// <summary>
         /// Shuts down the app immediately
@@ -157,6 +169,23 @@ namespace AutomatedRoadTollingSystem.Views
         private void MaintainLaneClick(object sender, RoutedEventArgs e)
         {
             SelectedTollLane.maintain();
+            evaluateGlobalStatus();
+        }
+        private void evaluateGlobalStatus()
+        {
+            int countClosedOrMaint = 0;
+            foreach(Lane l in TollLanes)
+            {
+                if (l.status == 1 || l.status == 2)
+                    countClosedOrMaint++;
+            }
+            double ratio = (double)countClosedOrMaint / (double)TollLanes.Count;
+            if (ratio >= 0.75)
+                GlobalStatus = 2;
+            else if (ratio >= 0.50)
+                GlobalStatus = 1;
+            else
+                GlobalStatus = 0;
         }
     }
 }

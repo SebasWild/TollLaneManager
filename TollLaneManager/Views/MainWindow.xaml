@@ -261,7 +261,7 @@
             <StatusBarItem Height="22" VerticalAlignment="Stretch" HorizontalAlignment="Left">
                 <!--Needs to bind to the overall status of the system.-->
                 <Ellipse     Stretch="Uniform"
-                             Fill="{Binding Path=status, Converter={StaticResource StatusToColorConverter}}"
+                             Fill="{Binding Path=globalStatus, Converter={StaticResource StatusToColorConverter}}"
                              Height="15"
                              Width="15"/>
             </StatusBarItem>
