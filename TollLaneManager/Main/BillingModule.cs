@@ -13,7 +13,6 @@ namespace AutomatedRoadTollingSystem
 	/// </summary>
 	public class BillingModule
 	{
-		SQLiteConnection conn = DBActions.conn; //connection to the DB instance
 
 		public BillingModule()
 		{
