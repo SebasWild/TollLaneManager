@@ -42,18 +42,7 @@
                 Height="19"
                 HorizontalAlignment="Left"
         		VerticalAlignment="Center" 
-                Style="{StaticResource ImageButtonStyle}">
-                <Image Source="/Assets/Icons/plusIcon.ico"/>
-            </Button>
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-            <Button 
-                Height="19"
-                HorizontalAlignment="Left"
-        		VerticalAlignment="Center" 
-                Style="{StaticResource ImageButtonStyle}">
-                <Image Source="/Assets/Icons/removeIcon.ico"/>
-            </Button>
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                Style="{StaticResource ImageButtonStyle}"/>
             <Button x:Name="TriggerVehicle"
             		Height="19"
             		HorizontalAlignment="Right"
