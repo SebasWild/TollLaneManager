@@ -40,20 +40,22 @@ namespace AutomatedRoadTollingSystem
         /// </summary>
         /// <param name="fee"></param>
         /// <param name="accountID"></param>
-        public static void payTollViaAccountID(decimal fee, int accountID = -1)
+        public static String payTollViaAccountID(decimal fee, int accountID = -1)
         {
+            String rtn = "";
             if (accountID != -1)
             {
                 try
                 {
                     // bill the person who owns the liscense plate
-                    DBActions.createTransactionFromID(accountID, fee);
+                  rtn = DBActions.createTransactionFromID(accountID, fee);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("ERROR IN payTollViaAccountID()" + e.Message);
                 }
             }
+            return rtn;
         }
     }
 }

@@ -20,7 +20,6 @@ namespace AutomatedRoadTollingSystem
         private decimal fee = 5.20m;
         private Camera cam = new Camera();
 
-        List<Camera> cameras;
         List<RFIDReader> readers;
         MaintenanceModule maintenance;
         private int laneNumber { get; set; }
@@ -75,20 +74,24 @@ namespace AutomatedRoadTollingSystem
             status = 2;
         }
 
-        public List<Camera> getCameras()
+        internal void maintain()
         {
-            return this.cameras;
+            status = 1;
         }
-        public void enableCameras()
+
+        public Camera getCamera()
         {
-            foreach (Camera c in this.cameras)
-            {
-                c.enable();
-            }
+            return this.cam;
         }
-        public void addCamera(Camera c)
+        public void enableCamera()
         {
-            this.cameras.Add(c);
+            cam.enable();
+            status = 0;
+        }
+        public void disableCamera()
+        {
+            cam.disable();
+            status = 1;
         }
         public void addReader(RFIDReader r)
         {
@@ -104,12 +107,10 @@ namespace AutomatedRoadTollingSystem
 
         public void simulateCarPassingPlate()
         {
-            // CAMERA SIMULATION
-            Camera c = new Camera();
-            string capturedPlateNo = c.takePictureSimulated();
+            string capturedPlateNo = cam.takePictureSimulated();
 
             //BILLING SIMULATION
-            BillingModule.payTollViaPlate(capturedPlateNo, fee);
+            logEntries.Add(BillingModule.payTollViaPlate(capturedPlateNo, fee));        //simulate a car passing and log it.
 
             //GRAB ACCOUNT FROM DATABASE BASED ON CAR PLATE
             int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
@@ -120,6 +121,9 @@ namespace AutomatedRoadTollingSystem
             //GRAB RANDOM ACCOUNT BASE ON THE COUNT OF ALL THE ACCOUNTS
             Random rnd = new Random();
             int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
+
+            //BILLING SIMULATION
+            BillingModule.payTollViaAccountID(fee, accountID);
 
         }
     }

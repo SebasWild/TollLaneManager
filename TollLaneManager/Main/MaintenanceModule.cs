@@ -11,28 +11,27 @@ namespace AutomatedRoadTollingSystem
 		{
 			this.lane = lane;
 		}
-		public void disableCamera(Camera cameraToDisable)
+		public void disableCamera()
 		{
-			foreach (Camera c in this.lane.getCameras())
-            {
-                if (c == cameraToDisable) c.disable();
-            }
+            lane.disableCamera();  
 		}
 		//Enables the camera sent to this method
 		public void enableCamera(Camera cameraToEnable)
         {
-            foreach (Camera c in this.lane.getCameras())
-            {
-                if (c == cameraToEnable) c.enable();
-            }
+            lane.enableCamera();
         }
         //Closes a specified lane.
         public void closeLane(Lane laneToClose)
 		{
 			laneToClose.close();
 		}
-		//Opens a specified lane.
-		public void openLane(Lane laneToOpen)
+        //Closes a lane for maintenance
+        public void mainTainLane(Lane laneToClose)
+        {
+            laneToClose.maintain();
+        }
+        //Opens a specified lane.
+        public void openLane(Lane laneToOpen)
 		{
 			laneToOpen.open();
 		}
