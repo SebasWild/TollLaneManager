@@ -11,32 +11,28 @@ namespace AutomatedRoadTollingSystem
 	///     This module is used to bill each car that passes through the tolling system either directly though the drivers smart card (SRS Functional Requirements 4.2) 
 	///     or indirectly through the driver's license plate number (SRS Functional Requirements 4.3).
 	/// </summary>
-	public class BillingModule
+	public static class BillingModule
 	{
-
-		public BillingModule()
-		{
-			
-		}
 
 		/// <summary>
         ///     Bill the person based on the plate number
         /// </summary>
         /// <param name="plateNo"></param>
         /// <param name="fee"></param>
-        public  void payTollViaPlate(String plateNo, decimal fee) {
-
+        public static String payTollViaPlate(String plateNo, decimal fee) {
+            String rtn = "";
             if (plateNo != null) {
 
                 try {
                     // bill the person who owns the liscense plate
-                    DBActions.createTransactionFromPlate(plateNo, fee);
+                    rtn = DBActions.createTransactionFromPlate(plateNo, fee);
 
                 }
                 catch (Exception e) {
                     Console.WriteLine("ERROR IN payTollViaPlate()" + e.Message);
                 }
             }
+            return rtn;
 		}
 
         /// <summary>
@@ -44,7 +40,7 @@ namespace AutomatedRoadTollingSystem
         /// </summary>
         /// <param name="fee"></param>
         /// <param name="accountID"></param>
-        public void payTollViaAccountID(decimal fee, int accountID = -1)
+        public static void payTollViaAccountID(decimal fee, int accountID = -1)
         {
             if (accountID != -1)
             {

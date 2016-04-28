@@ -71,10 +71,6 @@ namespace AutomatedRoadTollingSystem
         {
             status = 2;
         }
-        internal void maintain()
-        {
-            status = 1;
-        }
 
         public List<Camera> getCameras()
         {
@@ -110,46 +106,18 @@ namespace AutomatedRoadTollingSystem
             string capturedPlateNo = c.takePictureSimulated();
 
             //BILLING SIMULATION
-            BillingModule bm = new BillingModule();
-            bm.payTollViaPlate(capturedPlateNo, fee);
+            BillingModule.payTollViaPlate(capturedPlateNo, fee);
 
             //GRAB ACCOUNT FROM DATABASE BASED ON CAR PLATE
             int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
-            if (accountID > -1)
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
-
-            }
-            else
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
-
-            }
         }
 
         public void simulateCarPassingRFID()
         {
-            // CAMERA SIMULATION
-            Camera c = new Camera();
-            string capturedPlateNo = c.takePictureSimulated();
-
-            //BILLING SIMULATION
-            BillingModule bm = new BillingModule();
-            bm.payTollViaPlate(capturedPlateNo, fee);
-
             //GRAB RANDOM ACCOUNT BASE ON THE COUNT OF ALL THE ACCOUNTS
             Random rnd = new Random();
             int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
 
-            if (accountID > -1)
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
-
-            }
-            else
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
-            }
         }
     }
 }

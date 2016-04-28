@@ -171,8 +171,10 @@ namespace AutomatedRoadTollingSystem.Common
         /// Add a new transaction to the transaction table
         /// </summary>
         /// <param name="errorLogMessage"></param>
-        public static void createTransactionFromPlate(string plateNo, decimal fee)
+        public static String createTransactionFromPlate(string plateNo, decimal fee)
         {
+            String returnedStr = "";
+
             conn.Open();
 
             var command = conn.CreateCommand();  
@@ -187,9 +189,11 @@ namespace AutomatedRoadTollingSystem.Common
             if (accountID > -1)
             {
                 subtractBalanceFrom(accountID, fee);
-            }
-
-            Console.WriteLine("NEW TRANSACTIOIN: " + plateNo + " billed for $" + fee.ToString() + ".");
+                returnedStr = "NEW TRANSACTIOIN: " + plateNo + " billed for $" + fee.ToString() + ".";
+            } else
+            {
+                returnedStr = "Plate not found: " + plateNo;
+            }    
         }
 
         /// <summary>
