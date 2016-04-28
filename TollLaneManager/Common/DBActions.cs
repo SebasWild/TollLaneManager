@@ -193,7 +193,8 @@ namespace AutomatedRoadTollingSystem.Common
             } else
             {
                 var fileName = string.Format(@"{0}.txt", Guid.NewGuid());
-                System.IO.StreamWriter file = new System.IO.StreamWriter("..\\..\\..\\BilltoCustomers" + fileName, true);
+                //System.IO.StreamWriter file = new System.IO.StreamWriter("..\\..\\..\\BilltoCustomers" + fileName, true);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(@".\\BilltoCustomers" + fileName, true);
                 file.WriteLine("Plate Number: " + plateNo);
                 file.WriteLine("Toll Amount: " + fee);
                 file.Close();

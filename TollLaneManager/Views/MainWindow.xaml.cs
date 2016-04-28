@@ -26,6 +26,7 @@ namespace AutomatedRoadTollingSystem.Views
         public MainWindow()
         {
             InitializeComponent();
+            DBActions.initDB();
             Simulator.init();       //create some lanes.
             this.TollLanes = Simulator.lanes;
             MainGrid.Visibility = System.Windows.Visibility.Collapsed;

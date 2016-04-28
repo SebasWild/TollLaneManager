@@ -19,15 +19,25 @@ namespace AutomatedRoadTollingSystem
         /// <returns>The random image genearted</returns>
         public String takePictureSimulated()
         {
-            var rand = new Random();
-            var files = Directory.GetFiles(@"..\\..\\..\\SimulatedPictures", "*.jpg");
-            LicensePlateReader reader = new LicensePlateReader();
-            String file = files[rand.Next(files.Length)];
+            try
+            {
+                var rand = new Random();
+                //var files = Directory.GetFiles(@"..\\..\\..\\SimulatedPictures", "*.jpg");
+                var files = Directory.GetFiles(@".\\SimulatedPictures", "*.jpg");
+                LicensePlateReader reader = new LicensePlateReader();
+                String file = files[rand.Next(files.Length)];
 
-            currentImage = new BitmapImage(new Uri(String.Format(@"..\\..\\..\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
-            currentImage.Freeze();
+                //currentImage = new BitmapImage(new Uri(String.Format(@"..\\..\\..\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
+                currentImage = new BitmapImage(new Uri(String.Format(@".\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
+                currentImage.Freeze();
 
-            return Path.GetFileNameWithoutExtension(file);
+                return Path.GetFileNameWithoutExtension(file);
+            }
+            catch(DirectoryNotFoundException e)
+            {
+                Console.WriteLine(e);
+                return "";
+            }
         }
 
 
