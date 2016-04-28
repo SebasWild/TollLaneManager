@@ -77,6 +77,7 @@
                              ItemsSource="{Binding TollLanes}"
                              HorizontalAlignment="Stretch"
                              SelectedItem="{Binding SelectedTollLane, Mode=TwoWay}"
+                             SelectionChanged="LanesListBox_SelectionChanged"
                              HorizontalContentAlignment="Stretch" Style="{DynamicResource TollLanesListBoxStyle}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -133,7 +134,6 @@
               HorizontalAlignment="Stretch"
               Grid.Column="1" 
               Grid.Row="2"
-              Visibility="{Binding IsMainGridVisible, Converter={StaticResource BooleanToVisibilityConverter }, Mode=OneWay}"
               DataContext="{Binding SelectedTollLane, Mode=TwoWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -25,10 +25,10 @@ namespace AutomatedRoadTollingSystem.Views
     {
         public MainWindow()
         {
-            IsMainGridVisible = false;
             InitializeComponent();
             Simulator.init();       //create some lanes.
             this.TollLanes = Simulator.lanes;
+            MainGrid.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         //The View binds to the following properties. 
@@ -62,15 +62,7 @@ namespace AutomatedRoadTollingSystem.Views
             }
             set { SetValue(TollLanesProperty, value); }
         }
-        public static DependencyProperty IsMainGridVisibleProperty = DependencyProperty.Register("IsMainGridVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
-        public bool IsMainGridVisible
-        {
-            get
-            {
-                return (bool)GetValue(IsMainGridVisibleProperty);
-            }
-            set { SetValue(IsMainGridVisibleProperty, value); }
-        }
+
         #endregion
 
         /// <summary>
@@ -78,9 +70,9 @@ namespace AutomatedRoadTollingSystem.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
+        private void LanesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IsMainGridVisible = true;
+            MainGrid.Visibility = System.Windows.Visibility.Visible;
         }
 
         /// <summary>
