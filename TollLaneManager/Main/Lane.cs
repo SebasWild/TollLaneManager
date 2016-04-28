@@ -53,6 +53,10 @@ namespace AutomatedRoadTollingSystem
         {
             status = 2;
         }
+        internal void maintain()
+        {
+            status = 1;
+        }
 
         public List<Camera> getCameras()
         {

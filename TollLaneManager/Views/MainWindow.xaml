@@ -133,7 +133,7 @@
               HorizontalAlignment="Stretch"
               Grid.Column="1" 
               Grid.Row="2"
-              Visibility="{Binding IsMainGridVisible, Converter={StaticResource BooleanToVisibilityConverter }}"
+              Visibility="{Binding IsMainGridVisible, Converter={StaticResource BooleanToVisibilityConverter }, Mode=OneWay}"
               DataContext="{Binding SelectedTollLane, Mode=TwoWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -214,6 +214,7 @@
                 </StackPanel>
                 <Button x:Name="OpenLaneBtn" Content="Open Lane" HorizontalAlignment="Left" Margin="10,19.667,0,0" VerticalAlignment="Top" Width="75" Click="OpenLaneContextClick" Grid.Row="4"/>
                 <Button x:Name="CloseLaneBtn" Content="Close Lane" HorizontalAlignment="Left" Margin="9.667,19.667,0,0" VerticalAlignment="Top" Width="75" Click="CloseLaneContextClick" Grid.Row="4" Grid.Column="1"/>
+                <Button x:Name="MaintLaneBtn" Content="Maintenance" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="75" Click="MaintainLaneClick" Grid.Row="3"/>
             </Grid>
             <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
                 <!--StackPanel for upper right box-->

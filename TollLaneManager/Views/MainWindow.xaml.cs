@@ -25,6 +25,7 @@ namespace AutomatedRoadTollingSystem.Views
     {
         public MainWindow()
         {
+            IsMainGridVisible = false;
             InitializeComponent();
             Simulator.init();       //create some lanes.
             this.TollLanes = Simulator.lanes;
@@ -69,18 +70,24 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
-            
+            IsMainGridVisible = true;
         }
 
         /// <summary>
-        /// Used for simulation purposes. Will trigger a car to pass through the currently selected lane.
-        /// This should trigger subsequent billing and all kinds of stuff.
+        /// Randomly pick a lane to send car through.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
-            
+            Random rand = new Random();
+            int laneToPick = rand.Next(TollLanes.Count - 1);
+
+            while(TollLanes[laneToPick].status == 1 || TollLanes[laneToPick].status == 2)
+            {
+                laneToPick = rand.Next(TollLanes.Count - 1);
+            }
+            //TollLanes[laneToPick].
         }
         /// <summary>
         /// Open the selected lane.
@@ -121,6 +128,15 @@ namespace AutomatedRoadTollingSystem.Views
             MessageBoxButton buttons = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
             MessageBox.Show(message, caption, buttons, icon);
+        }
+        /// <summary>
+        /// Put the selected lane into maintenance mode.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MaintainLaneClick(object sender, RoutedEventArgs e)
+        {
+            SelectedTollLane.maintain();
         }
     }
 }

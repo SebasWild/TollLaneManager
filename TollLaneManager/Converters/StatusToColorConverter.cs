@@ -20,7 +20,7 @@ namespace AutomatedRoadTollingSystem.Converters
             {
                 case 0: result  = Brushes.Green;
                     break;
-                case 1: result = Brushes.Yellow;
+                case 1: result = Brushes.DarkOrange;
                     break;
                 case 2: result = Brushes.Red;
                     break;
