@@ -1,31 +1,26 @@
 using AutomatedRoadTollingSystem;
 using System;
+using System.Collections.Generic;
+
 namespace AutomatedRoadTollingSystem
 {
-	//Simulator class for simulating functionality of the system.
-	public static class Simulator
-	{
-	//stub
-    /// <summary>
-    /// Tests the billing component. 
-    /// 
-    /// TODO: make this an actual test.
-    /// </summary>
-    public static void testBillingModule()
-        {
-            //Test billing a dummy acc. WIP code
-            BillingModule bm = new BillingModule();
-           // bm.payTollViaPlate("QWERTY", 100.00m, accountno: 0);        //runs sync but w/e
-            
+    //Simulator class for simulating functionality of the system.
+  
 
-        }
-    public static String simulationOfCar()
+    public static class Simulator
+	{
+        public static List<Lane> lanes { get; set; }
+
+        public static void init()
         {
-            Monitor m = new Monitor();
-            m.start();
-            // Plaza p = m.getPlaza();
-            //return p.getCameras()[0].takePictureSimulated();
-            return null;
+            lanes.Add(new Lane(1, "Lane 1"));
+            lanes.Add(new Lane(2, "Lane 2"));
+            lanes.Add(new Lane(3, "Lane 3"));
+            lanes.Add(new Lane(4, "Lane 4"));
+            lanes.Add(new Lane(5, "Lane 5"));
+            lanes.Add(new Lane(6, "Lane 6"));
+            lanes.Add(new Lane(7, "Lane 7"));
+            lanes.Add(new Lane(8, "Lane 8"));
         }
 	}
     

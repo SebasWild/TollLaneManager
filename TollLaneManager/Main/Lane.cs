@@ -16,7 +16,7 @@ namespace AutomatedRoadTollingSystem
 	public class Lane
 	{
         private decimal fee = 5.20m;
-        List<Lane> lanes;
+        
         List<Camera> cameras;
         List<RFIDReader> readers;
         MaintenanceModule maintenance;
@@ -32,11 +32,10 @@ namespace AutomatedRoadTollingSystem
                              "ERROR; A car passed through the lane; RFID MISS; License plate MISS; Failed to bill customer!",
                              "A vehicle passed through the lane; RFID HIT; Customer billed; Customer balance low."};
         */
-        public Lane()
+        public Lane(int laneNumber, string name)
 		{
 			this.laneNumber = laneNumber;
 			this.name = name;
-			this.lanes = new List<Lane>();
             this.cameras = new List<Camera>();
             this.readers = new List<RFIDReader>();
             this.maintenance = new MaintenanceModule(this);
