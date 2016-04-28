@@ -116,5 +116,27 @@ namespace AutomatedRoadTollingSystem.Views
         {
 
         }
+        /// <summary>
+        /// Shuts down the app immediately
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        /// <summary>
+        /// Shows the about dialog box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "AutomatedRoadTollingSystem \n\nAuthors:\nHuy Ly, Tyler Nolan, Sean O'Connel, Frank Staas and Sebastian Wild";
+            string caption = "About";
+            MessageBoxButton buttons = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBox.Show(message, caption, buttons, icon);
+        }
     }
 }
