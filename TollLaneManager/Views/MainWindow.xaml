@@ -44,7 +44,7 @@
                 Height="19"
                 HorizontalAlignment="Left"
         		VerticalAlignment="Center" 
-                >
+                Style="{StaticResource ImageButtonStyle}">
                 <Image Source="/Assets/Icons/plusIcon.ico"/>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
@@ -52,7 +52,7 @@
                 Height="19"
                 HorizontalAlignment="Left"
         		VerticalAlignment="Center" 
-                >
+                Style="{StaticResource ImageButtonStyle}">
                 <Image Source="/Assets/Icons/removeIcon.ico"/>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
@@ -173,6 +173,37 @@
                     <TextBlock Text="Lane Status: "
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Top"/>
+                    <Ellipse Stretch="Uniform"
+                                     Height="15"
+                                     Width="15"
+                                     Fill="{Binding Path=status, Converter={StaticResource StatusToColorConverter}}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                    <TextBlock Text="# Cameras:"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"/>
+                    <!--Needs # camera binding-->
+                    <TextBlock                                   
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                    <TextBlock Text="Camera Status:"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"/>
+                    <!--Needs camera status binding.-->
                     <Ellipse Stretch="Uniform"
                                      Height="15"
                                      Width="15"
