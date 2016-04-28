@@ -12,8 +12,6 @@ namespace AutomatedRoadTollingSystem
 	{
         private Camera primaryCamera;
         private RFIDReader primaryReader;
-        private RFIDReader secondaryReader;
-        private Camera secondaryCamera;
         private int laneNumber { get; set; }
         private String name { get; set; }
         public int status { get; set; }
@@ -26,20 +24,22 @@ namespace AutomatedRoadTollingSystem
                              "ERROR; A car passed through the lane; RFID MISS; License plate MISS; Failed to bill customer!",
                              "A vehicle passed through the lane; RFID HIT; Customer billed; Customer balance low."};
         */
-        public Lane(Camera camera, RFIDReader reader, int Id, String name)
+        public Lane(int laneNo, String name)
 		{
-			this.laneNumber = Id;
-			this.name = name;
-			this.primaryCamera = camera;
-			this.primaryReader = reader;
+            this.laneNumber = laneNo;
+            this.name = name;
+			this.primaryCamera = new Camera();
+			this.primaryReader = new RFIDReader();
 		}
 		public void close()
 		{
 			this.isOpen = false;
+            status = 3;
 		}
 		public void open()
 		{
 			this.isOpen = true;
+            status = 1;
 		}
 	}
 }
