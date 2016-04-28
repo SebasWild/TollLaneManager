@@ -121,6 +121,9 @@ namespace AutomatedRoadTollingSystem
             Random rnd = new Random();
             int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
 
+            //BILLING SIMULATION
+            BillingModule.payTollViaAccountID(fee, accountID);
+
         }
     }
 }
