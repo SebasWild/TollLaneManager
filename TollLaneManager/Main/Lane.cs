@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 using System.Xml;
 
 namespace AutomatedRoadTollingSystem
@@ -27,12 +28,12 @@ namespace AutomatedRoadTollingSystem
         public int numberOfCameras { get; set;}
 
         //public int status { get; set; }
-        public static DependencyProperty Capture = DependencyProperty.Register("capture", typeof(Image), typeof(Object), null);
-        public Image capture
+        public static DependencyProperty Capture = DependencyProperty.Register("capture", typeof(ImageSource), typeof(Object), null);
+        public ImageSource capture
         {
             get
             {
-                return (Image)GetValue(Capture);
+                return (ImageSource)GetValue(Capture);
             }
             set { SetValue(Capture, value); }
         }

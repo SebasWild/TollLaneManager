@@ -2,6 +2,8 @@ using AutomatedRoadTollingSystem;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace AutomatedRoadTollingSystem
 {
@@ -9,7 +11,7 @@ namespace AutomatedRoadTollingSystem
 	public class Camera
 	{
 		private bool status;
-        public Image currentImage { get; set; }
+        public ImageSource currentImage { get; set; }
 
         /// <summary>
         ///     Simulates taking a picture.
@@ -22,7 +24,8 @@ namespace AutomatedRoadTollingSystem
             LicensePlateReader reader = new LicensePlateReader();
             String file = files[rand.Next(files.Length)];
 
-            currentImage = Image.FromFile(file);  
+            currentImage = new BitmapImage(new Uri(String.Format(@"..\\..\\..\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
+            currentImage.Freeze();
 
             return Path.GetFileNameWithoutExtension(file);
         }
