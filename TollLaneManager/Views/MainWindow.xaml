@@ -106,7 +106,7 @@
                                              HorizontalAlignment="Right"
                                              Height="15"
                                              Width="15"
-                                             Fill="{Binding status, Converter={StaticResource StatusToColorConverter}}"/>
+                                             Fill="{Binding Path=status, Converter={StaticResource StatusToColorConverter}, Mode=OneWay}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -212,6 +212,8 @@
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Top"/>
                 </StackPanel>
+                <Button x:Name="OpenLaneBtn" Content="Open Lane" HorizontalAlignment="Left" Margin="10,19.667,0,0" VerticalAlignment="Top" Width="75" Click="OpenLaneContextClick" Grid.Row="4"/>
+                <Button x:Name="CloseLaneBtn" Content="Close Lane" HorizontalAlignment="Left" Margin="9.667,19.667,0,0" VerticalAlignment="Top" Width="75" Click="CloseLaneContextClick" Grid.Row="4" Grid.Column="1"/>
             </Grid>
             <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
                 <!--StackPanel for upper right box-->
@@ -244,9 +246,9 @@
                 <!--Image of most recent car that has passed will show here.-->
                 <Image Grid.Column="2"
                        Grid.Row="2">
-                    
+
                 </Image>
-                
+
             </Grid>
         </Grid>
 

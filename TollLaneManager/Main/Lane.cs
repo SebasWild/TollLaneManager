@@ -3,6 +3,7 @@ using AutomatedRoadTollingSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Xml;
@@ -13,8 +14,8 @@ namespace AutomatedRoadTollingSystem
     /// <summary>
     /// A lane object stores information about a lane: the camera module, RFID readers, and some fields like isOpen and name.
     /// </summary>
-	public class Lane
-	{
+	public class Lane : DependencyObject //A little of a hack extending this...
+    {
         private decimal fee = 5.20m;
         
         List<Camera> cameras;
@@ -22,7 +23,17 @@ namespace AutomatedRoadTollingSystem
         MaintenanceModule maintenance;
         private int laneNumber { get; set; }
         public String name { get; set; }
-        public int status { get; set; }
+        //public int status { get; set; }
+
+        public static DependencyProperty StatusProperty = DependencyProperty.Register("status", typeof(int), typeof(Object), null);
+        public int status
+        {
+            get
+            {
+                return (int)GetValue(StatusProperty);
+            }
+            set { SetValue(StatusProperty, value); }
+        }
         public ObservableCollection<String> logEntries { get; set; }       //Will hold all log entries. For prototyping purposes this is just a string.
   
         public Lane(int laneNumber, string name) { 

@@ -82,15 +82,23 @@ namespace AutomatedRoadTollingSystem.Views
         {
             
         }
-
+        /// <summary>
+        /// Open the selected lane.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenLaneContextClick(object sender, RoutedEventArgs e)
         {
-            
+            SelectedTollLane.open();
         }
-
+        /// <summary>
+        /// Close the selected lane.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseLaneContextClick(object sender, RoutedEventArgs e)
         {
-
+            SelectedTollLane.close();
         }
         /// <summary>
         /// Shuts down the app immediately
