@@ -46,7 +46,19 @@ namespace AutomatedRoadTollingSystem
             }
             set { SetValue(StatusProperty, value); }
         }
-        public ObservableCollection<String> logEntries { get; set; }       //Will hold all log entries. For prototyping purposes this is just a string.
+        private ObservableCollection<String> _logEntries = null;
+        public ObservableCollection<String> logEntries
+        {
+            get
+            {
+                if (_logEntries == null) logEntries = new ObservableCollection<string>();
+                return _logEntries;
+            }
+            set
+            {
+                _logEntries = value;
+            }
+        }
   
         public Lane(int laneNumber, string name, int numCameras) {
 
@@ -123,7 +135,7 @@ namespace AutomatedRoadTollingSystem
             int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
 
             //BILLING SIMULATION
-            BillingModule.payTollViaAccountID(fee, accountID);
+            logEntries.Add(BillingModule.payTollViaAccountID(fee, accountID));
 
         }
     }

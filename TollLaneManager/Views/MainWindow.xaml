@@ -187,7 +187,7 @@
                                     VerticalAlignment="Stretch"
                                     Orientation="Horizontal"
                                     Margin="0,0,0,0">
-                    <TextBlock Text="# Cameras:"
+                    <TextBlock Text="# Cameras: "
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Top"/>
                     <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=numberOfCameras}" VerticalAlignment="Top"/>
@@ -202,7 +202,7 @@
                                     VerticalAlignment="Stretch"
                                     Orientation="Horizontal"
                                     Margin="0,0,0,0">
-                    <TextBlock Text="Camera Status:"
+                    <TextBlock Text="Camera Status: "
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Top"/>
                     <!--Needs camera status binding.-->

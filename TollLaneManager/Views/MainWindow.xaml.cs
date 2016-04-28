@@ -87,7 +87,11 @@ namespace AutomatedRoadTollingSystem.Views
             {
                 laneToPick = rand.Next(TollLanes.Count - 1);
             }
-            //TollLanes[laneToPick].
+            int i = rand.Next(1);
+            if (i == 1)
+                TollLanes[laneToPick].simulateCarPassingPlate();
+            else
+                TollLanes[laneToPick].simulateCarPassingRFID();
         }
         /// <summary>
         /// Open the selected lane.
