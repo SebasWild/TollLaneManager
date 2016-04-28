@@ -85,26 +85,7 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
-            decimal fee = 5.20m;
-
-            // CAMERA SIMULATION
-            Camera c = new Camera();
-            string capturedPlateNo = c.takePictureSimulated();
-
-            //BILLING SIMULATION
-            BillingModule bm = new BillingModule();         
-            bm.payTollViaPlate(capturedPlateNo, fee);
-
-            int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
-            if (accountID > -1)
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
-
-            }
-            else
-            {
-                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
-            }
+            
         }
 
         private void OpenLaneContextClick(object sender, RoutedEventArgs e)
@@ -115,6 +96,28 @@ namespace AutomatedRoadTollingSystem.Views
         private void CloseLaneContextClick(object sender, RoutedEventArgs e)
         {
 
+        }
+        /// <summary>
+        /// Shuts down the app immediately
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        /// <summary>
+        /// Shows the about dialog box.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "AutomatedRoadTollingSystem \n\nAuthors:\nHuy Ly, Tyler Nolan, Sean O'Connel, Frank Staas and Sebastian Wild";
+            string caption = "About";
+            MessageBoxButton buttons = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBox.Show(message, caption, buttons, icon);
         }
     }
 }

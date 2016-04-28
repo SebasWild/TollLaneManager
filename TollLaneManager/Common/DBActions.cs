@@ -57,6 +57,31 @@ namespace AutomatedRoadTollingSystem.Common
         ///     Retruns the plate attached to the specific account
         /// </summary>
         /// <returns></returns>
+        public static int getAllAccountCount()
+        {
+            int count = 0;
+
+            conn.Open();
+
+            var command = conn.CreateCommand();
+            command.CommandText = "SELECT count(*) FROM account;";
+
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+
+            conn.Close();
+
+            return count;
+        }
+
+        /// <summary>
+        ///     Retruns the plate attached to the specific account
+        /// </summary>
+        /// <returns></returns>
         public static string getPlateFromAccountID(int accountID)
         {
             

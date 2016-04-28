@@ -27,12 +27,9 @@
         <!--Menubar-->
         <Menu HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Grid.ColumnSpan="2">
             <MenuItem Header="File&#xD;&#xA;File">
-                <MenuItem Header="Exit" HorizontalAlignment="Left" Width="139.506666666667"/>
+                <MenuItem Header="Exit" HorizontalAlignment="Left" Width="139.506666666667" Click="ExitMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="Tools&#xD;&#xA;Tools">
-                <MenuItem Header="Options" HorizontalAlignment="Left" Width="139.506666666667"/>
-            </MenuItem>
-            <MenuItem Header="About"/>
+            <MenuItem Header="About" Click="AboutMenuItem_Click"/>
         </Menu>
         <!--Buttons to add toll lanes and the like go here-->
         <StackPanel Grid.Column="0"
