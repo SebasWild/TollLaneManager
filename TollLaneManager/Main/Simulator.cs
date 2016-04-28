@@ -23,8 +23,9 @@ namespace AutomatedRoadTollingSystem
         {
             Monitor m = new Monitor();
             m.start();
-            Plaza p = m.getPlaza();
-            return p.getCameras()[0].takePictureSimulated();
+            // Plaza p = m.getPlaza();
+            //return p.getCameras()[0].takePictureSimulated();
+            return null;
         }
 	}
     

@@ -2,6 +2,8 @@ using AutomatedRoadTollingSystem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Xml;
 
 namespace AutomatedRoadTollingSystem
 {
@@ -27,9 +29,9 @@ namespace AutomatedRoadTollingSystem
                              "ERROR; A car passed through the lane; RFID MISS; License plate MISS; Failed to bill customer!",
                              "A vehicle passed through the lane; RFID HIT; Customer billed; Customer balance low."};
         */
-        public Lane(Camera camera, RFIDReader reader, int Id, String name)
+        public Lane()
 		{
-			this.laneNumber = Id;
+			this.laneNumber = laneNumber;
 			this.name = name;
 			this.lanes = new List<Lane>();
             this.cameras = new List<Camera>();
@@ -39,6 +41,28 @@ namespace AutomatedRoadTollingSystem
         public List<Camera> getCameras()
         {
             return this.cameras;
+        }
+        public void enableCameras()
+        {
+            foreach (Camera c in this.cameras)
+            {
+                c.enable();
+            }
+        }
+        public void addCamera(Camera c)
+        {
+            this.cameras.Add(c);
+        }
+        public void addReader(RFIDReader r)
+        {
+            this.readers.Add(r);
+        }
+        public void enableReaders()
+        {
+            foreach (RFIDReader r in this.readers)
+            {
+                r.enable();
+            }
         }
 		public void close()
 		{

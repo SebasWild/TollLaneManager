@@ -7,36 +7,19 @@ namespace AutomatedRoadTollingSystem
 	//And monitors any car that does contain an RFID device.
 	public class Monitor
 	{
-        private Plaza plaza;
+        private Lane lane;
 		//Turns all toll lane cameras on to take pictures of passing cars.
 		public void start()
 		{
-            //Stub
-            //Deserialize a previous instance of the plaza and load it
-            try
-            {
-                this.plaza = Plaza.load();
-            }
-            catch
-            {
-                this.plaza = new Plaza();
-                this.plaza.addCamera(new Camera());
-                this.plaza.addReader(new RFIDReader());
-                this.plaza.addLane(0, "Lane 0");
-            }
             //enable cameras
-            this.plaza.enableCameras();
+            this.lane.enableCameras();
             //enable RFID readers
-            this.plaza.enableReaders();
+            this.lane.enableReaders();
 
 		}
-        public Plaza getPlaza()
+        public Lane getPlaza()
         {
-            return this.plaza;
-        }
-        public void close()
-        {
-            this.plaza.serialize();
+            return this.lane;
         }
 	}
 }
