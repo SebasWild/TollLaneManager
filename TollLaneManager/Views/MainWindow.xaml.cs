@@ -26,21 +26,13 @@ namespace AutomatedRoadTollingSystem.Views
         public MainWindow()
         {
             InitializeComponent();
-            InitializeLanes();
             //TODO: call all this junk somewhere else...
             AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
            //rdr.TestALPR();
             DBActions.initDB();       //Initialize the database, fill in some data.
 
             //Quick test of basic billing functionality:
-            Simulator.testBillingModule();
-        }
-        /// <summary>
-        /// Called on starting the applications. Will initialize some lanes.
-        /// </summary>
-        private void InitializeLanes()
-        {
-            
+            //Simulator.testBillingModule();
         }
 
         //The View binds to the following properties. 
@@ -90,35 +82,6 @@ namespace AutomatedRoadTollingSystem.Views
         }
         #endregion
 
-
-        public void NewLaneClick(object sender, RoutedEventArgs e)
-        {
-            
-            Random rand = new Random();
-            int random = rand.Next(0, 1000);
-            TollLanes.Add(new Entities.Lane("Lane #" + random, random));
-            TollLanes.Last().status = rand.Next(0, 3);
-            
-        }
-
-        private void DeleteLaneClick(object sender, RoutedEventArgs e)
-        { 
-            if (TollLanes.Count != 0)
-                STollLanes.Remove(TollLanes.ElementAt(TollLanes.Count - 1));
-            TollLanes.RemoveAt(TollLanes.Count - 1);
-            
-
-        }
-
-        private void DeleteLaneContextClick(object sender, RoutedEventArgs e)
-        {
-
-            Entities.Lane laneToRemove = (Entities.Lane)((MenuItem)sender).DataContext;
-            STollLanes.Remove(laneToRemove);
-            TollLanes.Remove(laneToRemove);
-            
-        }
-
         /// <summary>
         /// We received a click event on a Lane in our ListBox of lanes. Here is where we'd then adjust the view on the right pane.
         /// </summary>
@@ -139,45 +102,6 @@ namespace AutomatedRoadTollingSystem.Views
             
         }
 
-        private void MakeTab(object sender, RoutedEventArgs e)
-        {
-
-            Entities.Lane laneToAdd = (Entities.Lane)((MenuItem)sender).DataContext;
-            if (STollLanes.Contains(laneToAdd))
-            {
-                // remove it
-                STollLanes.Remove(laneToAdd);
-            }
-
-            // add new, or re add previously deleted lane
-            STollLanes.Add(laneToAdd);
-            
-        }
-
-        private void LanePropertiesMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            PropertiesWindow pWindow = new PropertiesWindow();
-            pWindow.Show();
-        }
-
-        private void ReportPropertiesMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MakeReportTab(object sender, RoutedEventArgs e)
-        {
-          
-            Report newReport = new Report("Custom Report", DateTime.Now, DateTime.Now.AddDays(-1), SelectedTollLane.logEntries.ToList());
-            Reports.Add(newReport);
-
-            if(STollLanes.Contains(newReport))
-            {
-                STollLanes.Remove(newReport);
-            }
-            STollLanes.Add(newReport);
-            
-        }
         /// <summary>
         /// Used for simulation purposes. Will trigger a car to pass through the currently selected lane.
         /// This should trigger subsequent billing and all kinds of stuff.
@@ -200,15 +124,22 @@ namespace AutomatedRoadTollingSystem.Views
             if (accountID > -1)
             {
                 MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
-                
-            } else
+
+            }
+            else
             {
                 MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
             }
+        }
 
+        private void OpenLaneContextClick(object sender, RoutedEventArgs e)
+        {
             
+        }
 
-            //throw new NotImplementedException("Simulating a passing car is not implemented!");
+        private void CloseLaneContextClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
