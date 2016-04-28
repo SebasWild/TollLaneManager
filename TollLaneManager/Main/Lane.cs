@@ -1,8 +1,10 @@
 using AutomatedRoadTollingSystem;
+using AutomatedRoadTollingSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using System.Xml;
 
 namespace AutomatedRoadTollingSystem
@@ -13,6 +15,7 @@ namespace AutomatedRoadTollingSystem
     /// </summary>
 	public class Lane
 	{
+        private decimal fee = 5.20m;
         List<Lane> lanes;
         List<Camera> cameras;
         List<RFIDReader> readers;
@@ -72,5 +75,54 @@ namespace AutomatedRoadTollingSystem
 		{
 			this.isOpen = true;
 		}
-	}
+
+        public void simulateCarPassingPlate()
+        {
+            // CAMERA SIMULATION
+            Camera c = new Camera();
+            string capturedPlateNo = c.takePictureSimulated();
+
+            //BILLING SIMULATION
+            BillingModule bm = new BillingModule();
+            bm.payTollViaPlate(capturedPlateNo, fee);
+
+            //GRAB ACCOUNT FROM DATABASE BASED ON CAR PLATE
+            int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
+            if (accountID > -1)
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
+
+            }
+            else
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
+
+            }
+        }
+
+        public void simulateCarPassingRFID()
+        {
+            // CAMERA SIMULATION
+            Camera c = new Camera();
+            string capturedPlateNo = c.takePictureSimulated();
+
+            //BILLING SIMULATION
+            BillingModule bm = new BillingModule();
+            bm.payTollViaPlate(capturedPlateNo, fee);
+
+            //GRAB RANDOM ACCOUNT BASE ON THE COUNT OF ALL THE ACCOUNTS
+            Random rnd = new Random();
+            int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
+
+            if (accountID > -1)
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee + " Account Balance: " + DBActions.getBalanceFromAccount(accountID));
+
+            }
+            else
+            {
+                MessageBox.Show("PLATE NO: " + capturedPlateNo + "\tBILLED: $" + fee);
+            }
+        }
+    }
 }
