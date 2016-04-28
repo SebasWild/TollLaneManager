@@ -24,7 +24,7 @@ namespace AutomatedRoadTollingSystem.Entities
     /// PROTOTYPE CODE
     /// </summary>
    // [System.Obsolete("New class in Production Code dir. <- Consider moving this here to 'Entities'")]
-    public class Lane : Tabitem
+    public class Lane
     {
         public string name { get; set; }
         public int id { get; set; }

@@ -21,7 +21,7 @@ namespace AutomatedRoadTollingSystem
         List<RFIDReader> readers;
         MaintenanceModule maintenance;
         private int laneNumber { get; set; }
-        private String name { get; set; }
+        public String name { get; set; }
         public int status { get; set; }
         public ObservableCollection<String> logEntries { get; set; }       //Will hold all log entries. For prototyping purposes this is just a string.
   
@@ -32,6 +32,16 @@ namespace AutomatedRoadTollingSystem
             this.readers = new List<RFIDReader>();
             this.maintenance = new MaintenanceModule(this);
 		}
+
+        internal void open()
+        {
+            status = 0;
+        }
+
+        internal void close()
+        {
+            status = 2;
+        }
 
         public List<Camera> getCameras()
         {

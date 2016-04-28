@@ -26,13 +26,8 @@ namespace AutomatedRoadTollingSystem.Views
         public MainWindow()
         {
             InitializeComponent();
-            //TODO: call all this junk somewhere else...
-            AutomatedRoadTollingSystem.LicensePlateReader rdr = new AutomatedRoadTollingSystem.LicensePlateReader();
-           //rdr.TestALPR();
-            DBActions.initDB();       //Initialize the database, fill in some data.
-
-            //Quick test of basic billing functionality:
-            //Simulator.testBillingModule();
+            Simulator.init();       //create some lanes.
+            this.TollLanes = Simulator.lanes;
         }
 
         //The View binds to the following properties. 
@@ -113,7 +108,7 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            string message = "AutomatedRoadTollingSystem \n\nAuthors:\nHuy Ly, Tyler Nolan, Sean O'Connel, Frank Staas and Sebastian Wild";
+            string message = "AutomatedRoadTollingSystem \n\nAuthors:\nErica Johnson, Huy Ly, Tyler Nolan, Sean O'Connell, Frank Staas and Sebastian Wild";
             string caption = "About";
             MessageBoxButton buttons = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
