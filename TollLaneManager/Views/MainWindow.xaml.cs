@@ -81,11 +81,11 @@ namespace AutomatedRoadTollingSystem.Views
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
             Random rand = new Random();
-            int laneToPick = rand.Next(TollLanes.Count - 1);
+            int laneToPick = rand.Next(TollLanes.Count);
 
             while(TollLanes[laneToPick].status == 1 || TollLanes[laneToPick].status == 2)
             {
-                laneToPick = rand.Next(TollLanes.Count - 1);
+                laneToPick = rand.Next(TollLanes.Count);
             }
             int i = rand.Next(2);
             if (i == 1)
