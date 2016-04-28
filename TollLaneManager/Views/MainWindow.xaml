@@ -190,7 +190,7 @@
                     <TextBlock Text="# Cameras:"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Top"/>
-                    <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=cameras.count}" VerticalAlignment="Top"/>
+                    <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=numberOfCameras}" VerticalAlignment="Top"/>
                     <!--Needs # camera binding-->
                     <TextBlock                                   
                                HorizontalAlignment="Right"

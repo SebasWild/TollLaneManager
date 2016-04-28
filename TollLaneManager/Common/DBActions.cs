@@ -193,7 +193,8 @@ namespace AutomatedRoadTollingSystem.Common
             } else
             {
                 returnedStr = "Plate not found: " + plateNo;
-            }    
+            }
+            return returnedStr;
         }
 
         /// <summary>
