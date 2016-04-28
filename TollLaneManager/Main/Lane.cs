@@ -25,6 +25,7 @@ namespace AutomatedRoadTollingSystem
         MaintenanceModule maintenance;
         private int laneNumber { get; set; }
         public String name { get; set; }
+        public int numberOfCameras { get; set;}
 
         //public int status { get; set; }
         public static DependencyProperty Capture = DependencyProperty.Register("capture", typeof(Image), typeof(Object), null);
@@ -49,12 +50,14 @@ namespace AutomatedRoadTollingSystem
         public ObservableCollection<String> logEntries { get; set; }       //Will hold all log entries. For prototyping purposes this is just a string.
   
         public Lane(int laneNumber, string name, int numCameras) {
-            cameras = new List<Camera>();
 
-            for (int i = 0; i < numCameras; i++)
-            {
-                cameras.Add(new Camera());
-            }
+            numberOfCameras = numCameras;
+            //cameras = new List<Camera>();
+
+            //for (int i = 0; i < numCameras; i++)
+            //{
+            //    cameras.Add(new Camera());
+            //}
 
             this.laneNumber = laneNumber;
 			this.name = name;
