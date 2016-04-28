@@ -1,5 +1,6 @@
 using AutomatedRoadTollingSystem;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace AutomatedRoadTollingSystem
@@ -10,10 +11,10 @@ namespace AutomatedRoadTollingSystem
     /// </summary>
 	public class Lane
 	{
-        private Camera primaryCamera;
-        private RFIDReader primaryReader;
-        private RFIDReader secondaryReader;
-        private Camera secondaryCamera;
+        List<Lane> lanes;
+        List<Camera> cameras;
+        List<RFIDReader> readers;
+        MaintenanceModule maintenance;
         private int laneNumber { get; set; }
         private String name { get; set; }
         public int status { get; set; }
@@ -30,9 +31,15 @@ namespace AutomatedRoadTollingSystem
 		{
 			this.laneNumber = Id;
 			this.name = name;
-			this.primaryCamera = camera;
-			this.primaryReader = reader;
+			this.lanes = new List<Lane>();
+            this.cameras = new List<Camera>();
+            this.readers = new List<RFIDReader>();
+            this.maintenance = new MaintenanceModule(this);
 		}
+        public List<Camera> getCameras()
+        {
+            return this.cameras;
+        }
 		public void close()
 		{
 			this.isOpen = false;
