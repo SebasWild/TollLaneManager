@@ -189,7 +189,7 @@ namespace AutomatedRoadTollingSystem.Common
             if (accountID > -1)
             {
                 subtractBalanceFrom(accountID, fee);
-                rtn = "NEW TRANSACTION: " + plateNo + " billed for $" + fee.ToString() + ".";
+                rtn = "NEW TRANSACTIOIN: " + plateNo + " billed for $" + fee.ToString() + ".";
             } else
             {
                 var fileName = string.Format(@"{0}.txt", Guid.NewGuid());
@@ -223,7 +223,7 @@ namespace AutomatedRoadTollingSystem.Common
             if (accountID > -1)
             {
                 subtractBalanceFrom(accountID, fee);
-                rtn = "NEW TRANSACTION: Account # " + accountID + " billed for $" + fee.ToString() + ".";
+                rtn = "NEW TRANSACTIOIN: Account# " + accountID + " billed for $" + fee.ToString() + ".";
             }
             else
             {
