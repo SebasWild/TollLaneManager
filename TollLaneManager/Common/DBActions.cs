@@ -193,8 +193,8 @@ namespace AutomatedRoadTollingSystem.Common
             } else
             {
                 var fileName = string.Format(@"{0}.txt", Guid.NewGuid());
-                //System.IO.StreamWriter file = new System.IO.StreamWriter("..\\..\\..\\BilltoCustomers" + fileName, true);
-                System.IO.StreamWriter file = new System.IO.StreamWriter(@".\\BilltoCustomers" + fileName, true);
+                System.IO.StreamWriter file = new System.IO.StreamWriter("..\\..\\..\\BilltoCustomers" + fileName, true);
+                //System.IO.StreamWriter file = new System.IO.StreamWriter(@".\\BilltoCustomers" + fileName, true);
                 file.WriteLine("Plate Number: " + plateNo);
                 file.WriteLine("Toll Amount: " + fee);
                 file.Close();
@@ -224,7 +224,7 @@ namespace AutomatedRoadTollingSystem.Common
             if (accountID > -1)
             {
                 subtractBalanceFrom(accountID, fee);
-                rtn = "NEW TRANSACTIOIN: Account# " + accountID + " billed for $" + fee.ToString() + ".";
+                rtn = "NEW TRANSACTION: Account# " + accountID + " billed for $" + fee.ToString() + ".";
             }
             else
             {

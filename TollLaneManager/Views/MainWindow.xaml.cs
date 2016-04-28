@@ -83,18 +83,34 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void TriggerVehicle_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
-            int laneToPick = rand.Next(TollLanes.Count);
-
-            while(TollLanes[laneToPick].status == 1 || TollLanes[laneToPick].status == 2)
+            var openLanes = new ObservableCollection<Lane>();
+            foreach (Lane l in TollLanes)
             {
-                laneToPick = rand.Next(TollLanes.Count);
+                if (l.status == 0) openLanes.Add(l);
             }
-            int i = rand.Next(2);
-            if (i == 1)
-                TollLanes[laneToPick].simulateCarPassingPlate();
+            if (openLanes.Count != 0)
+            {
+                Random rand = new Random();
+                int laneToPick = rand.Next(openLanes.Count - 1);
+
+                while (openLanes[laneToPick].status == 1 || openLanes[laneToPick].status == 2)
+                {
+                    laneToPick = rand.Next(TollLanes.Count - 1);
+                }
+                int i = rand.Next(2);
+                if (i == 1)
+                    openLanes[laneToPick].simulateCarPassingPlate();
+                else
+                    openLanes[laneToPick].simulateCarPassingRFID();
+            }
             else
-                TollLanes[laneToPick].simulateCarPassingRFID();
+            {
+                string message = "All Lanes are closed - cars cannot go through.";
+                string caption = "Warning";
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Exclamation;
+                MessageBox.Show(message, caption, buttons, icon);
+            }
         }
         /// <summary>
         /// Open the selected lane.

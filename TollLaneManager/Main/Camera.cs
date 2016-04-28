@@ -22,13 +22,13 @@ namespace AutomatedRoadTollingSystem
             try
             {
                 var rand = new Random();
-                //var files = Directory.GetFiles(@"..\\..\\..\\SimulatedPictures", "*.jpg");
-                var files = Directory.GetFiles(@".\\SimulatedPictures", "*.jpg");
+                var files = Directory.GetFiles(@"..\\..\\..\\SimulatedPictures", "*.jpg");
+                //var files = Directory.GetFiles(@".\\SimulatedPictures", "*.jpg");
                 LicensePlateReader reader = new LicensePlateReader();
                 String file = files[rand.Next(files.Length)];
 
-                //currentImage = new BitmapImage(new Uri(String.Format(@"..\\..\\..\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
-                currentImage = new BitmapImage(new Uri(String.Format(@".\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
+                currentImage = new BitmapImage(new Uri(String.Format(@"..\\..\\..\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
+                //currentImage = new BitmapImage(new Uri(String.Format(@".\\SimulatedPictures\\{0}.jpg", Path.GetFileNameWithoutExtension(file)), UriKind.Relative));
                 currentImage.Freeze();
 
                 return Path.GetFileNameWithoutExtension(file);
