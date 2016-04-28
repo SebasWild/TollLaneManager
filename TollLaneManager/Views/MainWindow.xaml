@@ -128,19 +128,103 @@
                        VerticalAlignment="Center"/>
         </Border>
         <!--Toggle visibility based on if we have a lane selected or not!-->
-        <Grid VerticalAlignment="Stretch"
+        <!--Overview content for a single lane goes here-->
+        <Grid Background="#FFE5E5E5"
+              VerticalAlignment="Stretch"
               HorizontalAlignment="Stretch"
               Grid.Column="1" 
-              Grid.Row="2"
-              >
-            
+              Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                                    Grid.Row="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                    <TextBlock Text="Lane Name: " VerticalAlignment="Top"/>
+                    <TextBlock  HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding Path=name}" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                                    Grid.Row="0"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,0">
+                    <TextBlock Text="Lane Status: "
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"/>
+                    <Ellipse Stretch="Uniform"
+                                     Height="15"
+                                     Width="15"
+                                     Fill="{Binding Path=status, Converter={StaticResource StatusToColorConverter}}"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
+                <!--StackPanel for upper right box-->
+            </StackPanel>
+            <!--ListBox displaying toStrings of recent events that have happened in this lane.-->
+            <ListBox x:Name="LaneLogListBox"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             Grid.Row="2"
+                             ItemsSource="{Binding Path=logEntries}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="Recent Log Entries: " VerticalAlignment="Bottom"/>
+            <Grid Grid.Column="1" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Capture of last Car:"/>
+                <!--Image of most recent car that has passed will show here.-->
+                <Image Grid.Column="2"
+                       Grid.Row="2">
+                    
+                </Image>
+                
+            </Grid>
         </Grid>
+
         <!--Statusbar-->
         <StatusBar HorizontalAlignment="Stretch" Height="25" Grid.Row="3" Grid.ColumnSpan="2"  VerticalAlignment="Stretch" Width="Auto">
             <StatusBarItem Content="System Status: " HorizontalAlignment="Right" Height="Auto" VerticalAlignment="Stretch"/>
             <StatusBarItem Height="22" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                <!--Needs to bind to the overall status of the system.-->
                 <Ellipse     Stretch="Uniform"
-                             Fill="Green"
+                             Fill="{Binding Path=status, Converter={StaticResource StatusToColorConverter}}"
                              Height="15"
                              Width="15"/>
             </StatusBarItem>
