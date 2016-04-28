@@ -133,7 +133,7 @@ namespace AutomatedRoadTollingSystem
         {
             //GRAB RANDOM ACCOUNT BASE ON THE COUNT OF ALL THE ACCOUNTS
             Random rnd = new Random();
-            int accountID = rnd.Next(0, DBActions.getAllAccountCount() - 1);
+            int accountID = rnd.Next(0, DBActions.getAllAccountCount());
 
             //BILLING SIMULATION
             logEntries.Add(BillingModule.payTollViaAccountID(fee, accountID));
