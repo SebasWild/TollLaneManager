@@ -87,7 +87,7 @@ namespace AutomatedRoadTollingSystem.Views
             {
                 laneToPick = rand.Next(TollLanes.Count - 1);
             }
-            int i = rand.Next(1);
+            int i = rand.Next(2);
             if (i == 1)
                 TollLanes[laneToPick].simulateCarPassingPlate();
             else

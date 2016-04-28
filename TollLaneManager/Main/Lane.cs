@@ -32,9 +32,9 @@ namespace AutomatedRoadTollingSystem
         {
             get
             {
-                return (Image)GetValue(StatusProperty);
+                return (Image)GetValue(Capture);
             }
-            set { SetValue(StatusProperty, value); }
+            set { SetValue(Capture, value); }
         }
 
         public static DependencyProperty StatusProperty = DependencyProperty.Register("status", typeof(int), typeof(Object), null);
@@ -59,7 +59,7 @@ namespace AutomatedRoadTollingSystem
                 _logEntries = value;
             }
         }
-  
+
         public Lane(int laneNumber, string name, int numCameras) {
 
             numberOfCameras = numCameras;
@@ -123,6 +123,7 @@ namespace AutomatedRoadTollingSystem
 
             //BILLING SIMULATION
             logEntries.Add(BillingModule.payTollViaPlate(capturedPlateNo, fee));        //simulate a car passing and log it.
+            capture = cam.currentImage;
 
             //GRAB ACCOUNT FROM DATABASE BASED ON CAR PLATE
             int accountID = DBActions.getAccountIDByPlateNo(capturedPlateNo);
@@ -136,7 +137,6 @@ namespace AutomatedRoadTollingSystem
 
             //BILLING SIMULATION
             logEntries.Add(BillingModule.payTollViaAccountID(fee, accountID));
-
         }
     }
 }
