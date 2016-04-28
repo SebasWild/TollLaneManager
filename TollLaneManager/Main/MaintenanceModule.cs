@@ -5,15 +5,15 @@ namespace AutomatedRoadTollingSystem
 	//This module is used to ensure that all other systems are working correctly and will work to fix them and my turn them off for maintenance.
 	public class MaintenanceModule
 	{
-		Plaza plaza;
+		Lane lane;
 		//Disables the camera sent to this method
-		public MaintenanceModule(Plaza plaza)
+		public MaintenanceModule(Lane lane)
 		{
-			this.plaza = plaza;
+			this.lane = lane;
 		}
 		public void disableCamera(Camera cameraToDisable)
 		{
-			foreach (Camera c in this.plaza.getCameras())
+			foreach (Camera c in this.lane.getCameras())
             {
                 if (c == cameraToDisable) c.disable();
             }
@@ -21,7 +21,7 @@ namespace AutomatedRoadTollingSystem
 		//Enables the camera sent to this method
 		public void enableCamera(Camera cameraToEnable)
         {
-            foreach (Camera c in this.plaza.getCameras())
+            foreach (Camera c in this.lane.getCameras())
             {
                 if (c == cameraToEnable) c.enable();
             }
@@ -35,16 +35,6 @@ namespace AutomatedRoadTollingSystem
 		public void openLane(Lane laneToOpen)
 		{
 			laneToOpen.open();
-		}
-		//Adds a new lane if space permits.
-		public void addNewLane(int id, String name)
-		{
-			plaza.addLane(id, name);
-		}
-		//Removes a current lane if space permits.
-		public void removeLane(Lane lane)
-		{
-			plaza.removeLane(lane);
 		}
 	}
 }
