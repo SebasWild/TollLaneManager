@@ -106,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\DBActions.cs" />
     <Compile Include="Common\TabControlDataTemplateSelector.cs" />
+    <Compile Include="Converters\BooleanToVisibiltyConverter.cs" />
     <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Tabitem.cs" />
     <Compile Include="Main\Address.cs" />

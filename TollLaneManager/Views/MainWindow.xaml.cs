@@ -38,47 +38,32 @@ namespace AutomatedRoadTollingSystem.Views
         //The View binds to the following properties. 
         #region DependencyProperties
         public static DependencyProperty SelectedLaneProperty = DependencyProperty.Register("SelectedTollLane", typeof(Lane), typeof(MainWindow), null);
-        public Entities.Lane SelectedTollLane
+        public Lane SelectedTollLane
         {
             get
             {
-                return (Entities.Lane)GetValue(SelectedLaneProperty);
+                return (Lane)GetValue(SelectedLaneProperty);
             }
             set { SetValue(SelectedLaneProperty, value); }
         }
 
-        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<Entities.Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Entities.Lane>()));
-        public ObservableCollection<Entities.Lane> TollLanes
+        public static DependencyProperty TollLanesProperty = DependencyProperty.Register("TollLanes", typeof(ObservableCollection<Lane>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Lane>()));
+        public ObservableCollection<Lane> TollLanes
         {
             get
             {
-                    return (ObservableCollection<Entities.Lane>)GetValue(TollLanesProperty); 
+                return (ObservableCollection<Lane>)GetValue(TollLanesProperty); 
             }
             set { SetValue(TollLanesProperty, value); }
         }
-        //Reports to display in the "Reports" expander.
-        public static DependencyProperty ReportsProperty = DependencyProperty.Register("Reports", typeof(ObservableCollection<Report>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Report>()));
-        public ObservableCollection<Report> Reports
+        public static DependencyProperty IsMainGridVisibleProperty = DependencyProperty.Register("IsGridMainVisible", typeof(bool), typeof(MainWindow), new PropertyMetadata(false));
+        public bool IsMainGridVisible
         {
             get
             {
-                return (ObservableCollection<Report>)GetValue(ReportsProperty);
+                return (bool)GetValue(IsMainGridVisibleProperty);
             }
-            set { SetValue(ReportsProperty, value); }
-        }
-        public static DependencyProperty STollLanesProperty = DependencyProperty.Register("STollLanes", typeof(ObservableCollection<Tabitem>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<Tabitem>()));
-        public ObservableCollection<Tabitem> STollLanes
-        {
-            get
-            {
-
-                return (ObservableCollection<Tabitem>)GetValue(STollLanesProperty);
-            }
-            set
-            {
-                SetValue(STollLanesProperty, value);
-
-            }
+            set { SetValue(IsMainGridVisibleProperty, value); }
         }
         #endregion
 
@@ -89,16 +74,6 @@ namespace AutomatedRoadTollingSystem.Views
         /// <param name="e"></param>
         private void LanesListBox_SelectionChanged(object sender, MouseEventArgs e)
         {
-
-            Entities.Lane laneToAdd = ((Entities.Lane)((ListBox)sender).SelectedItem);
-            if (STollLanes.Contains(laneToAdd))
-            {
-                // remove it
-                STollLanes.Remove(laneToAdd);
-            }
-
-            // add new, or re add previously deleted lane
-            STollLanes.Add(laneToAdd);
             
         }
 
