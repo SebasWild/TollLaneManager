@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Windows;
 using System.Xml;
@@ -17,13 +18,24 @@ namespace AutomatedRoadTollingSystem
 	public class Lane : DependencyObject //A little of a hack extending this...
     {
         private decimal fee = 5.20m;
-        
+        private Camera cam = new Camera();
+
         List<Camera> cameras;
         List<RFIDReader> readers;
         MaintenanceModule maintenance;
         private int laneNumber { get; set; }
         public String name { get; set; }
+
         //public int status { get; set; }
+        public static DependencyProperty Capture = DependencyProperty.Register("capture", typeof(Image), typeof(Object), null);
+        public Image capture
+        {
+            get
+            {
+                return (Image)GetValue(StatusProperty);
+            }
+            set { SetValue(StatusProperty, value); }
+        }
 
         public static DependencyProperty StatusProperty = DependencyProperty.Register("status", typeof(int), typeof(Object), null);
         public int status
@@ -36,10 +48,16 @@ namespace AutomatedRoadTollingSystem
         }
         public ObservableCollection<String> logEntries { get; set; }       //Will hold all log entries. For prototyping purposes this is just a string.
   
-        public Lane(int laneNumber, string name) { 
-			this.laneNumber = laneNumber;
+        public Lane(int laneNumber, string name, int numCameras) {
+            cameras = new List<Camera>();
+
+            for (int i = 0; i < numCameras; i++)
+            {
+                cameras.Add(new Camera());
+            }
+
+            this.laneNumber = laneNumber;
 			this.name = name;
-            this.cameras = new List<Camera>();
             this.readers = new List<RFIDReader>();
             this.maintenance = new MaintenanceModule(this);
 		}

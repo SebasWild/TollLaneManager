@@ -9,6 +9,7 @@ namespace AutomatedRoadTollingSystem
 	public class Camera
 	{
 		private bool status;
+        public Image currentImage { get; set; }
 
         /// <summary>
         ///     Simulates taking a picture.
@@ -21,13 +22,14 @@ namespace AutomatedRoadTollingSystem
             LicensePlateReader reader = new LicensePlateReader();
             String file = files[rand.Next(files.Length)];
 
-            //Image im = Image.FromFile(files[rand.Next(files.Length)]); // Not needed
+            currentImage = Image.FromFile(files[rand.Next(files.Length)]);  
 
             return Path.GetFileNameWithoutExtension(file);
         }
 
-		//Disables the camera, closes the lane the camera is monitoring. 
-		public void disable()
+
+        //Disables the camera, closes the lane the camera is monitoring. 
+        public void disable()
 		{
 			this.status = false;
 		}

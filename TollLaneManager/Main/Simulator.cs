@@ -15,14 +15,14 @@ namespace AutomatedRoadTollingSystem
         public static void init()
         {
             lanes = new ObservableCollection<Lane>();
-            lanes.Add(new Lane(1, "Lane #1"));
-            lanes.Add(new Lane(2, "Lane #2"));
-            lanes.Add(new Lane(3, "Lane #3"));
-            lanes.Add(new Lane(4, "Lane #4"));
-            lanes.Add(new Lane(5, "Lane #5"));
-            lanes.Add(new Lane(6, "Lane #6"));
-            lanes.Add(new Lane(7, "Lane #7"));
-            lanes.Add(new Lane(8, "Lane #8"));
+            lanes.Add(new Lane(1, "Lane #1", 1));
+            lanes.Add(new Lane(2, "Lane #2", 2));
+            lanes.Add(new Lane(3, "Lane #3", 3));
+            lanes.Add(new Lane(4, "Lane #4", 4));
+            lanes.Add(new Lane(5, "Lane #5", 1));
+            lanes.Add(new Lane(6, "Lane #6", 1));
+            lanes.Add(new Lane(7, "Lane #7", 2));
+            lanes.Add(new Lane(8, "Lane #8", 1));
         }
 	}
     
